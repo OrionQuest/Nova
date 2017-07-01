@@ -51,7 +51,7 @@ if(DOXYGEN_FOUND AND SPHINX_FOUND)
     COMMENT "Generating API documentation with Doxygen" VERBATIM
     )
   add_custom_target(doc
-    ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_SOURCE_DIR}/docs_src ${CMAKE_CURRENT_BINARY_DIR}/docs/html
+    ${SPHINX_EXECUTABLE} -b html ${CMAKE_CURRENT_SOURCE_DIR}/docs_src ${CMAKE_CURRENT_SOURCE_DIR}/../Nova_Documentation/html
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Generating API documentation with Sphinx" VERBATIM
     )
