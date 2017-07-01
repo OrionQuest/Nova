@@ -1,0 +1,42 @@
+language: cpp
+compiler:
+- clang
+- gcc
+sudo: required
+dist: trusty
+before_install:
+- echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+- wget -nv -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
+- sudo apt-add-repository -y 'deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.6 main'
+- sudo apt-add-repository -y 'deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.7 main'
+- sudo apt-add-repository -y 'deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.8 main'
+- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+- sudo apt-get update -qq
+- sudo apt-get install -qq -y gcc-4.8
+- sudo apt-get install -qq -y clang-3.6 clang-3.7 clang-3.8
+- sudo apt-get install -qq -y libsoil-dev libassimp-dev libglm-dev
+- sudo apt-get install -qq -y libglew-dev
+- sudo apt-get install -qq -y doxygen
+- sudo apt-get install -qq -y python-pip
+- sudo apt-get install -qq -y libboost-filesystem1.54-dev
+- sudo pip install sphinx==1.4.8 breathe
+- wget http://http.us.debian.org/debian/pool/main/g/glfw3/libglfw3_3.2.1-1_amd64.deb
+- wget http://http.us.debian.org/debian/pool/main/g/glfw3/libglfw3-dev_3.2.1-1_amd64.deb
+- sudo dpkg -i libglfw3_3.2.1-1_amd64.deb
+- sudo dpkg -i libglfw3-dev_3.2.1-1_amd64.deb
+script:
+- mkdir build
+- cd build
+- cmake ..
+- make
+- ctest --timeout 10
+- make doc
+env:
+  global:
+    secure: gr+RfoiGFK2cOmNA/NI/hpjb5bGrQNJOp8J5L5GDOEMtlZCU4Iupq0zyLPw+9yyBeksfqR8nD2KsNLmcSSIBMvh2VQX0/SH/t6PkF+Rt/j6QR4G88X30tbGZG5XCd+2bNHP8fGv6XleS21+u7ed5nh2zb/1z4Rlfazw75tzQydXiCVH0xUIMRTZgwmKeTxncBkMQhmPGYh97uwS5OztBFk0OcWU6cBzjnEpjPCpvcVuQe70YpWmxldCajnCyFukM2yUqX8tDrvPcOkzzqNFaIbKEbpcyLmzk8Izmrb7VfVh/9corcjx3CtUDeyfQS6pxk4njxabZf5399aKGmj0eHcWI/W6x3NAGWVtQTZpFMVEXqb0oqGiw6Lx3I7Qieul+6OjP6XPdY13QuFmZwfQunTQ1uKHHqt+yluHYLm6GlEKaslmMOASuv+XkrHMDXryOQicCIUzz+OxULAJw/UQT5xoZzUuS1QeXoug30TiBiXe6A03NgWoxDAOv5iQ0SzDRHiRlIJiI7ZRUwlEK/QtpQhzS4Eo2VczCJe9OIjUoDD6BPpX8h6fAR2R8H2R9zfFO+JnXqI6oKicbdMwMac818uwN9i3V/N26eBZOYLtqCSs2NJFocR8ge7a7KhF5B6xczKefHnOalNu1PRVli2I4czsuZRH09SXePwdcwsqt4Xs=
+notifications:
+  email:
+    recipients:
+      - aanjaneya@alumni.stanford.edu
+    on_success: change
+    on_failure: always
