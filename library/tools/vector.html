@@ -1,0 +1,910 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vector &#8212; Nova 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="Nova 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Nova Library - Module Tools" href="../tools.html" />
+    <link rel="prev" title="Utilities" href="utilities.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nova 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../intro.html" >Nova Library</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../tools.html" accesskey="U">Nova Library - Module Tools</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="vector">
+<h1>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt>
+<span class="target" id="novaclassNova_1_1Vector"></span><em class="property">template </em>&lt;class <em>T</em>, int <em>d</em>, bool <em>order_ascending</em> = true&gt;</dt>
+<dt id="_CPPv2N4Nova6VectorE">
+<span id="Nova::Vector"></span><em class="property">class </em><code class="descclassname">Nova::</code><code class="descname">Vector</code><a class="headerlink" href="#_CPPv2N4Nova6VectorE" title="Permalink to this definition">¶</a></dt>
+<dd><p><ul class="simple">
+<li>A C++11 wrapper for the std::array&lt;T,d&gt; class which provides accessory functions for vector arithmetic, cross/dot product, etc. </li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="type">
+<dt id="_CPPv2N4Nova6Vector8iteratorE">
+<span id="Nova::Vector::iterator"></span><span class="target" id="novaclassNova_1_1Vector_1a10e76819f503846a07fbe04ae6644fc8"></span><em class="property">typedef </em>T_STORAGE::iterator <code class="descname">iterator</code><a class="headerlink" href="#_CPPv2N4Nova6Vector8iteratorE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="_CPPv2N4Nova6Vector14const_iteratorE">
+<span id="Nova::Vector::const_iterator"></span><span class="target" id="novaclassNova_1_1Vector_1a28c928dd49543ea24fdcf1b7d79c2991"></span><em class="property">typedef </em>T_STORAGE::const_iterator <code class="descname">const_iterator</code><a class="headerlink" href="#_CPPv2N4Nova6Vector14const_iteratorE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="_CPPv2N4Nova6Vector16reverse_iteratorE">
+<span id="Nova::Vector::reverse_iterator"></span><span class="target" id="novaclassNova_1_1Vector_1a1c875ffe522bd6d2303737fbe7acc419"></span><em class="property">typedef </em>T_STORAGE::reverse_iterator <code class="descname">reverse_iterator</code><a class="headerlink" href="#_CPPv2N4Nova6Vector16reverse_iteratorE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="_CPPv2N4Nova6Vector22const_reverse_iteratorE">
+<span id="Nova::Vector::const_reverse_iterator"></span><span class="target" id="novaclassNova_1_1Vector_1a3475a36a8b68451692903a358f2a2aa8"></span><em class="property">typedef </em>T_STORAGE::const_reverse_iterator <code class="descname">const_reverse_iterator</code><a class="headerlink" href="#_CPPv2N4Nova6Vector22const_reverse_iteratorE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6VectorEv">
+<span id="Nova::Vector::Vector"></span><span class="target" id="novaclassNova_1_1Vector_1a78f95be06c1c29ff53347c85ce06ec55"></span><code class="descname">Vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base Constructor</p>
+<p>Resulting <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is filled with T(). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6VectorE1T">
+<span id="Nova::Vector::Vector__T"></span><span class="target" id="novaclassNova_1_1Vector_1a6acbbefe198dbe882ed2a3b437d49f95"></span><code class="descname">Vector</code><span class="sig-paren">(</span>T <em>constant</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scalar Value Constructor</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">constant</span></code>: Scalar value to fill the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> with. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6VectorENSt16initializer_listI1TEE">
+<span id="Nova::Vector::Vector__std::initializer_list:T:"></span><span class="target" id="novaclassNova_1_1Vector_1a32d68af14e22866654978e8404b34b9b"></span><code class="descname">Vector</code><span class="sig-paren">(</span>std::initializer_list&lt;T&gt; <em>l</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorENSt16initializer_listI1TEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializer List Constructor</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">l</span></code>: Initializer list from which to fill the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. The list must be of length d. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6VectorERK9T_STORAGE">
+<span id="Nova::Vector::Vector__T_STORAGECR"></span><span class="target" id="novaclassNova_1_1Vector_1ad9dd6092c1f2c1b5c341c1b351fc1c76"></span><code class="descname">Vector</code><span class="sig-paren">(</span><em class="property">const</em> T_STORAGE &amp;<em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorERK9T_STORAGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array Constructor</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: std::array instance to initialize the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> from. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6VectorERK6Vector">
+<span id="Nova::Vector::Vector__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1a07f53d12762ef68c262461f534a74fb5"></span><code class="descname">Vector</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6Vector6VectorEv" title="Nova::Vector::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy Constructor</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> to copy. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">template </em>&lt;<em class="property">class</em> T2&gt;</dt>
+<dt id="_CPPv2N4Nova6Vector6VectorERK6VectorI2T21dE">
+<span id="Nova::Vector::Vector__Vector:T2.d:CR"></span><span class="target" id="novaclassNova_1_1Vector_1af6e4d8a7fa5423530331141fd5e01918"></span><code class="descname">Vector</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6Vector6VectorEv" title="Nova::Vector::Vector">Vector</a>&lt;T2, d&gt; &amp;<em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6VectorERK6VectorI2T21dE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explicit Copy Constructor</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> to copy which is of a different type T2. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectoraSERK6Vector">
+<span id="Nova::Vector::assign-operator__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1a2f58b9d59aa59b7b28360c1ad4e2d545"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectoraSERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assignment Operator </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector8ReversedEv">
+<span id="Nova::Vector::ReversedC"></span><span class="target" id="novaclassNova_1_1Vector_1aaddbd0755173c2085cb6ea7c72fe4e51"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Reversed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector8ReversedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a vector with all elements in reverse order. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector4dataEv">
+<span id="Nova::Vector::data"></span><span class="target" id="novaclassNova_1_1Vector_1afd23c626c1c9126e708f67daff0be700"></span>T_STORAGE &amp;<code class="descname">data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector4dataEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reference to the underlying std::array. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector4dataEv">
+<span id="Nova::Vector::dataC"></span><span class="target" id="novaclassNova_1_1Vector_1ac5f23aea79fcd729ad1b6a129609881f"></span><em class="property">const</em> T_STORAGE &amp;<code class="descname">data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector4dataEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const reference to the underlying std::array. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector5beginEv">
+<span id="Nova::Vector::begin"></span><span class="target" id="novaclassNova_1_1Vector_1a96a1925019a205c497ba5075d911ad6f"></span>auto <code class="descname">begin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector5beginEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns iterator pointing to the beginning of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector3endEv">
+<span id="Nova::Vector::end"></span><span class="target" id="novaclassNova_1_1Vector_1a35048a483cd53a7cf1ce08424bd5c663"></span>auto <code class="descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector3endEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns iterator pointing to the end of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector6cbeginEv">
+<span id="Nova::Vector::cbeginC"></span><span class="target" id="novaclassNova_1_1Vector_1a6d1129c4baf6269513871b967452ea68"></span>auto <code class="descname">cbegin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector6cbeginEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const iterator pointing to the beginning of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector4cendEv">
+<span id="Nova::Vector::cendC"></span><span class="target" id="novaclassNova_1_1Vector_1af833eaaa70cd8dfafc04e720b4f69979"></span>auto <code class="descname">cend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector4cendEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const iterator pointing to the end of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector6rbeginEv">
+<span id="Nova::Vector::rbegin"></span><span class="target" id="novaclassNova_1_1Vector_1afe436c520504d656b989d5ed2d67570e"></span>auto <code class="descname">rbegin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector6rbeginEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reverse iterator pointing to the end of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector4rendEv">
+<span id="Nova::Vector::rend"></span><span class="target" id="novaclassNova_1_1Vector_1aa0801739e8f46b130955a405effb4e6b"></span>auto <code class="descname">rend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector4rendEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reverse iterator pointing to the beginning of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector7crbeginEv">
+<span id="Nova::Vector::crbeginC"></span><span class="target" id="novaclassNova_1_1Vector_1a1e24792d99fad540cb6f88215201198e"></span>auto <code class="descname">crbegin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector7crbeginEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const reverse iterator pointing to the end of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector5crendEv">
+<span id="Nova::Vector::crendC"></span><span class="target" id="novaclassNova_1_1Vector_1abca939d9c0ed12208f1acf10332f4206"></span>auto <code class="descname">crend</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector5crendEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const reverse iterator pointing to the beginning of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectorclEi">
+<span id="Nova::Vector::call-operator__i"></span><span class="target" id="novaclassNova_1_1Vector_1adad6ae1a06c4b3844d2a0fe955471931"></span>T &amp;<code class="descname">operator()</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectorclEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reference to ith element using parentheses operator. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectorixEi">
+<span id="Nova::Vector::subscript-operator__i"></span><span class="target" id="novaclassNova_1_1Vector_1ac195eca20428e69ef8f0f61f948ad9a9"></span>T &amp;<code class="descname">operator[]</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectorixEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reference to ith element using square brackets operator. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorclEi">
+<span id="Nova::Vector::call-operator__iC"></span><span class="target" id="novaclassNova_1_1Vector_1ade31c47d15a8cb51f81555294e13fb32"></span><em class="property">const</em> T &amp;<code class="descname">operator()</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorclEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const reference to ith element using parentheses operator. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorixEi">
+<span id="Nova::Vector::subscript-operator__iC"></span><span class="target" id="novaclassNova_1_1Vector_1a15619fe8e3aa34934762d636c5a0cb97"></span><em class="property">const</em> T &amp;<code class="descname">operator[]</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorixEi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns const reference to ith element using square brackets operator. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorplE1T">
+<span id="Nova::Vector::add-operator__TC"></span><span class="target" id="novaclassNova_1_1Vector_1a5f065e4a94a489d0f17c9e584d7a668b"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator+</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorplE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a scalar value to all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being added to each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectormiEv">
+<span id="Nova::Vector::sub-operatorC"></span><span class="target" id="novaclassNova_1_1Vector_1a43a7958b8e14d464b086459af3c5e558"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator-</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectormiEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Negation operator. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorneERK6Vector">
+<span id="Nova::Vector::neq-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a8f9ed0df42c50039d7282346d70ec9d2"></span>bool <code class="descname">operator!=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorneERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inequality comparison operator</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">v</span></code>: The <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> being compared with. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectorpLE1T">
+<span id="Nova::Vector::add-assign-operator__T"></span><span class="target" id="novaclassNova_1_1Vector_1a5b203148a9895adec486ea0591b0290a"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator+=</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectorpLE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a scalar value to all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being added to each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectormiE1T">
+<span id="Nova::Vector::sub-operator__TC"></span><span class="target" id="novaclassNova_1_1Vector_1a32a0e26d6d13c672f94056075436171e"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator-</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectormiE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a scalar value from all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being subtracted from each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectormIE1T">
+<span id="Nova::Vector::sub-assign-operator__T"></span><span class="target" id="novaclassNova_1_1Vector_1abdd838b677f1f486136f28a3b27e1998"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator-=</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectormIE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a scalar value from all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being subtracted from each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectormlE1T">
+<span id="Nova::Vector::mul-operator__TC"></span><span class="target" id="novaclassNova_1_1Vector_1af3ab4c2ff13c8029f5aee0caa4317455"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator*</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectormlE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a scalar value to all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being multiplied to each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectormLE1T">
+<span id="Nova::Vector::mul-assign-operator__T"></span><span class="target" id="novaclassNova_1_1Vector_1a1ce156b58b26a17171be105ddb3a8e49"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator*=</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectormLE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a scalar value to all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value being multiplied to each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectordvE1T">
+<span id="Nova::Vector::div-operator__TC"></span><span class="target" id="novaclassNova_1_1Vector_1abeb080d4538e97e6f96ab31cc1ce0c4c"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator/</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectordvE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> by a scalar value and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value that divides each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectordVE1T">
+<span id="Nova::Vector::div-assign-operator__T"></span><span class="target" id="novaclassNova_1_1Vector_1a278e7e065a58d43802cf8a205a4e4458"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator/=</code><span class="sig-paren">(</span>T <em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectordVE1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> by a scalar value.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The scalar value that divides each component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorplERK6Vector">
+<span id="Nova::Vector::add-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a4881c60e965d8385d0c2199ac4d4484a"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator+</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorplERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a vector value to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being added to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectorpLERK6Vector">
+<span id="Nova::Vector::add-assign-operator__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1a1b704d231d6b957daa43fb6d1e9523b0"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator+=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectorpLERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a vector value to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being added to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectormiERK6Vector">
+<span id="Nova::Vector::sub-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1aa8cbfe37556a226456109503dad43c56"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectormiERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a vector value from the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being subtracted from the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectormIERK6Vector">
+<span id="Nova::Vector::sub-assign-operator__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1aa395a77f9b72c9f7342090b1c4c1e511"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator-=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectormIERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a vector value from the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being subtracted from the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectormlERK6Vector">
+<span id="Nova::Vector::mul-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a3d4c873168bdbb02e10def70502393ac"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator*</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectormlERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a vector value to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being multiplied to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectormLERK6Vector">
+<span id="Nova::Vector::mul-assign-operator__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1a5f2f2c6ed248d1ecefa0e4c4c7dfeb3a"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator*=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectormLERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a vector value to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value being multiplied to the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectordvERK6Vector">
+<span id="Nova::Vector::div-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1ae172799181848da313c2fcdedd60e465"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">operator/</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectordvERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> by another vector and returns a new <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value dividing the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6VectordVERK6Vector">
+<span id="Nova::Vector::div-assign-operator__VectorCR"></span><span class="target" id="novaclassNova_1_1Vector_1acdd5b977667246eb8fa59440e4c9f953"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<code class="descname">operator/=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6VectordVERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> by another vector.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The vector value dividing the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectoreqERK6Vector">
+<span id="Nova::Vector::eq-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a5d16304604a2ca51b6ceec44ec72201f"></span>bool <code class="descname">operator==</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectoreqERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is component-wise equal to another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: The vector being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorltERK6Vector">
+<span id="Nova::Vector::lt-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a85731f8958b73f62262b7bcd7ad50240"></span>bool <code class="descname">operator&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorltERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is lexicographically less than another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: The vector being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorgtERK6Vector">
+<span id="Nova::Vector::gt-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1ae4f3bce33d26d277bc8aeb777d848ec0"></span>bool <code class="descname">operator&gt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorgtERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is lexicographically greater than another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: The vector being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorleERK6Vector">
+<span id="Nova::Vector::lte-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a5c26af80655bbeae434baae33915c862"></span>bool <code class="descname">operator&lt;=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorleERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is lexicographically less than or equal to another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: The vector being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6VectorgeERK6Vector">
+<span id="Nova::Vector::gte-operator__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a1da12f58545ba1f2452e4c61726c19cb"></span>bool <code class="descname">operator&gt;=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6VectorgeERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> is lexicographically greater than or equal to another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">other</span></code>: The vector being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector6InsertERK1TKi">
+<span id="Nova::Vector::Insert__TCR.iCC"></span><span class="target" id="novaclassNova_1_1Vector_1abc76c16abfdcd201aab5030d2f6e40d1"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a>&lt;T, d+1&gt; <code class="descname">Insert</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>element</em>, <em class="property">const</em> int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector6InsertERK1TKi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a higher-dimensional <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> with a new element inserted at a prescribed index.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">element</span></code>: Element to be inserted in the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </li>
+<li><code class="docutils literal"><span class="pre">index</span></code>: Index specifying where the element should be inserted. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector12Remove_IndexEKi">
+<span id="Nova::Vector::Remove_Index__iCC"></span><span class="target" id="novaclassNova_1_1Vector_1adee31111bf8985f407d70e1bc1a9bac2"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a>&lt;T, d-1&gt; <code class="descname">Remove_Index</code><span class="sig-paren">(</span><em class="property">const</em> int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector12Remove_IndexEKi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an entry at a given index and returns a lower dimensional vector.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">index</span></code>: The index of the element to be deleted. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector4FillEK1T">
+<span id="Nova::Vector::Fill__TC"></span><span class="target" id="novaclassNova_1_1Vector_1abd3461c14f1a32791d3d638ac63d9946"></span>void <code class="descname">Fill</code><span class="sig-paren">(</span><em class="property">const</em> T <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector4FillEK1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes all entries to a specified value.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">value</span></code>: The value to initialize all entries with. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector7ProductEv">
+<span id="Nova::Vector::ProductC"></span><span class="target" id="novaclassNova_1_1Vector_1af3657f69f0f57118f28c482ee9ea9b76"></span>T <code class="descname">Product</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector7ProductEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the product of all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector3SumEv">
+<span id="Nova::Vector::SumC"></span><span class="target" id="novaclassNova_1_1Vector_1a7f23c66703f685c5479fac67e0cd0481"></span>T <code class="descname">Sum</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector3SumEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sum of all the components of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector12Norm_SquaredEv">
+<span id="Nova::Vector::Norm_SquaredC"></span><span class="target" id="novaclassNova_1_1Vector_1a9e13137de0f431a1307ba9f0b3d458ed"></span>T <code class="descname">Norm_Squared</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector12Norm_SquaredEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the square of the Euclidean-norm of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector4NormEv">
+<span id="Nova::Vector::NormC"></span><span class="target" id="novaclassNova_1_1Vector_1a9afc1101c3289fea6746b8e202d9ebe7"></span>T <code class="descname">Norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector4NormEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Euclidean-norm of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector9NormalizeEv">
+<span id="Nova::Vector::Normalize"></span><span class="target" id="novaclassNova_1_1Vector_1a2e66d658c71322f2bb70d69dcecda74a"></span>T <code class="descname">Normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector9NormalizeEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> in-place. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector10NormalizedEv">
+<span id="Nova::Vector::NormalizedC"></span><span class="target" id="novaclassNova_1_1Vector_1a6124b1b8a18f15c4f9e530bac47ebc06"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Normalized</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector10NormalizedEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the normalized <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector9Clamp_MinEK1T">
+<span id="Nova::Vector::Clamp_Min__TCC"></span><span class="target" id="novaclassNova_1_1Vector_1a23ab31513d05f92dbd1566dcdc26a840"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Clamp_Min</code><span class="sig-paren">(</span><em class="property">const</em> T <em>a</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector9Clamp_MinEK1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clamps the individual components to a specified threshold.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The clamping threshold. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector3AbsEv">
+<span id="Nova::Vector::AbsC"></span><span class="target" id="novaclassNova_1_1Vector_1ab3d5ed1468232c43afb863873830438c"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Abs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector3AbsEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a vector with absolute value for each component entry. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector11Dot_ProductERK6Vector">
+<span id="Nova::Vector::Dot_Product__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1adaa55210f3ad7f58becef91157bbb00a"></span>T <code class="descname">Dot_Product</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector11Dot_ProductERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the dot product of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> with another <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector3MinEv">
+<span id="Nova::Vector::MinC"></span><span class="target" id="novaclassNova_1_1Vector_1a5b41c3b01073fc1e0a5c2312581e4909"></span>T <code class="descname">Min</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector3MinEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the minimum component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector3MaxEv">
+<span id="Nova::Vector::MaxC"></span><span class="target" id="novaclassNova_1_1Vector_1a20ea5a7b1607a70da4b023bb9fe87a07"></span>T <code class="descname">Max</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector3MaxEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the maximum component of the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector8ContainsERK1T">
+<span id="Nova::Vector::Contains__TCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a1251b6bd0a10fba6b7703ef33db64f02"></span>bool <code class="descname">Contains</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>element</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector8ContainsERK1T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if a given element is present in the <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>, false otherwise.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">element</span></code>: The key being searched for. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector11All_GreaterERK6Vector">
+<span id="Nova::Vector::All_Greater__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a5413d24098309ca1f611c7b32faeeaea"></span>bool <code class="descname">All_Greater</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector11All_GreaterERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if all components are greater than the given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>, false otherwise.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">v</span></code>: Given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector8All_LessERK6Vector">
+<span id="Nova::Vector::All_Less__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1a5a343f404c13efe855b195f7a82e4938"></span>bool <code class="descname">All_Less</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector8All_LessERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if all components are less than the given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>, false otherwise.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">v</span></code>: Given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector17All_Greater_EqualERK6Vector">
+<span id="Nova::Vector::All_Greater_Equal__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1aee7aea3a58b3ff3cef495204c83948e5"></span>bool <code class="descname">All_Greater_Equal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector17All_Greater_EqualERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if all components are greater than or equal to the given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>, false otherwise.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">v</span></code>: Given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector14All_Less_EqualERK6Vector">
+<span id="Nova::Vector::All_Less_Equal__VectorCRC"></span><span class="target" id="novaclassNova_1_1Vector_1ae266a6d30fbe40baeda1fa139ccd0eb4"></span>bool <code class="descname">All_Less_Equal</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector14All_Less_EqualERK6Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if all components are less than or equal to the given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a>, false otherwise.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">v</span></code>: Given <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> being compared to. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK4Nova6Vector22Unit_Orthogonal_VectorEv">
+<span id="Nova::Vector::Unit_Orthogonal_VectorC"></span><span class="target" id="novaclassNova_1_1Vector_1a21c0370790c4c3459dd4fb2ca3a75aeb"></span><a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Unit_Orthogonal_Vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Nova6Vector22Unit_Orthogonal_VectorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the normalized orthogonal vector. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK6Vector17Orthogonal_VectorEv">
+<span id="Vector::Orthogonal_VectorC"></span><span class="target" id="novaclassNova_1_1Vector_1a4f07f9c009481fa4e500bbf57b855eb8"></span>Vector&lt;T, d, order_ascending&gt; <code class="descname">Orthogonal_Vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK6Vector17Orthogonal_VectorEv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an orthogonal vector. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv2N4Nova6Vector5_dataE">
+<span id="Nova::Vector::_data__T_STORAGE"></span><span class="target" id="novaclassNova_1_1Vector_1a645e3d2cb6c922bb079aad41a0eac93f"></span>T_STORAGE <code class="descname">_data</code><a class="headerlink" href="#_CPPv2N4Nova6Vector5_dataE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv2N4Nova6Vector11Axis_VectorEKi">
+<span id="Nova::Vector::Axis_Vector__iC"></span><span class="target" id="novaclassNova_1_1Vector_1a5df27adc4037f362df1fec9d247bd40e"></span><em class="property">static</em> <a class="reference internal" href="#_CPPv2N4Nova6VectorE" title="Nova::Vector">Vector</a> <code class="descname">Axis_Vector</code><span class="sig-paren">(</span><em class="property">const</em> int <em>axis</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova6Vector11Axis_VectorEKi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a unit-vector along a given axis.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">axis</span></code>: The axis along which the vector points. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Friends</p>
+<dl class="function">
+<dt>
+<em class="property">template </em>&lt;<em class="property">class</em> TT, int <em>dd</em>, bool <em>order</em>&gt;</dt>
+<dt id="_CPPv2lsRNSt7ostreamERK6VectorI1T1d15order_ascendingE">
+<span id="lshift-operator__osR.Vector:T.d.order_ascending:CR"></span><span class="target" id="novaclassNova_1_1Vector_1a1b2aba0e9469b9fc18e194d16d0d596e"></span>std::ostream &amp;<code class="descname">operator&lt;&lt;</code><span class="sig-paren">(</span>std::ostream &amp;<em>out</em>, <em class="property">const</em> Vector&lt;T, d, order_ascending&gt; &amp;<em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2lsRNSt7ostreamERK6VectorI1T1d15order_ascendingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output operator.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">out</span></code>: Output stream. </li>
+<li><code class="docutils literal"><span class="pre">index</span></code>: <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> that stores the values being output. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">template </em>&lt;<em class="property">class</em> TT, int <em>dd</em>, bool <em>order</em>&gt;</dt>
+<dt id="_CPPv2rsRNSt7istreamER6VectorI1T1d15order_ascendingE">
+<span id="rshift-operator__isR.Vector:T.d.order_ascending:R"></span><span class="target" id="novaclassNova_1_1Vector_1a620013c1cb07f5e4236dc257f878a0fb"></span>std::istream &amp;<code class="descname">operator&gt;&gt;</code><span class="sig-paren">(</span>std::istream &amp;<em>in</em>, Vector&lt;T, d, order_ascending&gt; &amp;<em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2rsRNSt7istreamER6VectorI1T1d15order_ascendingE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input operator.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">in</span></code>: Input stream. </li>
+<li><code class="docutils literal"><span class="pre">index</span></code>: <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> that will store the values being input. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property">template </em>&lt;<em class="property">class</em> TT, int <em>dd</em>, bool <em>order</em>&gt;</dt>
+<dt id="_CPPv2miRK1TRK6VectorI2TT2dd5orderE">
+<span id="sub-operator__TCR.Vector:TT.dd.order:CR"></span><span class="target" id="novaclassNova_1_1Vector_1a7eaac615f0f0e7f3fe7e27ab945f0e45"></span>Vector&lt;TT, dd, order&gt; <code class="descname">operator-</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>a</em>, <em class="property">const</em> Vector&lt;TT, dd, order&gt; &amp;<em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2miRK1TRK6VectorI2TT2dd5orderE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a vector from a scalar value.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">a</span></code>: The constant from which the values will be subtracted. </li>
+<li><code class="docutils literal"><span class="pre">v</span></code>: The <a class="reference internal" href="#novaclassNova_1_1Vector"><span class="std std-ref">Vector</span></a> which is being negated. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="previous chapter">Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/library/tools/vector.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nova 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../intro.html" >Nova Library</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../tools.html" >Nova Library - Module Tools</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Mridul Aanjaneya, Nathan Mitchell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>
