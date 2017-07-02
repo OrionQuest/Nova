@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
               
    Introduction <intro>
+   Library <library/intro>
 
 Indices and tables
 ==================

@@ -25,10 +25,10 @@ class Vector
 {
     using T_STORAGE                         = std::array<T,d>;
   public:
-    using iterator                          = typename T_STORAGE::iterator;
-    using const_iterator                    = typename T_STORAGE::const_iterator;
-    using reverse_iterator                  = typename T_STORAGE::reverse_iterator;
-    using const_reverse_iterator            = typename T_STORAGE::const_reverse_iterator;
+    typedef typename T_STORAGE::iterator iterator;
+    typedef typename T_STORAGE::const_iterator const_iterator;
+    typedef typename T_STORAGE::reverse_iterator reverse_iterator;
+    typedef typename T_STORAGE::const_reverse_iterator const_reverse_iterator;
 
     T_STORAGE _data;
     
@@ -184,7 +184,7 @@ class Vector
 
     /*! Input operator.
      *
-     * \param out Input stream.
+     * \param in Input stream.
      * \param index Vector that will store the values being input.
      */
     template<class TT,int dd,bool order>
