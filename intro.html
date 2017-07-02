@@ -26,6 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Nova 1.0 documentation" href="index.html" />
+    <link rel="next" title="Nova Library" href="library/intro.html" />
     <link rel="prev" title="Welcome to Nova’s documentation!" href="index.html" /> 
   </head>
   <body role="document">
@@ -35,6 +36,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="library/intro.html" title="Nova Library"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Nova’s documentation!"
              accesskey="P">previous</a> |</li>
@@ -49,17 +53,27 @@
             
   <div class="section" id="introduction-to-the-nova-library">
 <h1>Introduction to the Nova Library<a class="headerlink" href="#introduction-to-the-nova-library" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to Nova, a multi-physics computational library that provides support for
+<p>Welcome to Nova, a high performance computational library that provides support for
 simulation, rendering and visualization. Nova is written primarily in C++ and supports all
 the latest open-source libraries and file formats for handling different kinds
 of data sets such as meshes, images, or volumes. Its unique design features a modular
 architecture for ease of use in geometric modeling and simulation, along with a plug-in
 based infrastructure that allows easy visualization of custom data structures.
-The library supports cross-platform compilation and has been extensively
-optimized using SSE and AVX vector instructions as well as OpenMP
-parallelization. It provides support for simulating multi-body dynamics,
-compressible and incompressible fluids, and volumetric elastic objects based on
-the research work of its co-authors over the past several years.</p>
+The library supports cross-platform compilation with <code class="docutils literal"><span class="pre">gcc</span></code> and <code class="docutils literal"><span class="pre">clang</span></code> and has been
+tested on Linux and Mac OS X operating systems. Several parts of the library
+have also been extensively optimized using <a class="reference external" href="http://www.openmp.org/">OpenMP</a>
+parallelization. It provides support for simulating rigid body dynamics,
+compressible and incompressible fluids, volumetric elastic solids,
+and multi-material interactions.</p>
+<p>The library requires <a class="reference external" href="https://cmake.org/">cmake</a> (version <code class="docutils literal"><span class="pre">3.0</span></code> or higher).
+Use of the graphical version <code class="docutils literal"><span class="pre">ccmake</span></code> is recommended for easy
+configuration of environment variables.
+To compile, create a <code class="docutils literal"><span class="pre">build</span></code> directory and run the following commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="n">ccmake</span> <span class="o">..</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -71,6 +85,9 @@ the research work of its co-authors over the past several years.</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to Nova&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="library/intro.html"
+                        title="next chapter">Nova Library</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -98,6 +115,9 @@ the research work of its co-authors over the past several years.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="library/intro.html" title="Nova Library"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Nova’s documentation!"
              >previous</a> |</li>
