@@ -23,8 +23,6 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Nova 1.0 documentation" href="index.html" />
     <link rel="next" title="Nova Library" href="library/intro.html" />
     <link rel="prev" title="Welcome to Nova’s documentation!" href="index.html" /> 
@@ -65,15 +63,18 @@ have also been extensively optimized using <a class="reference external" href="h
 parallelization. It provides support for simulating rigid body dynamics,
 compressible and incompressible fluids, volumetric elastic solids,
 and multi-material interactions.</p>
-<p>The library requires <a class="reference external" href="https://cmake.org/">cmake</a> (version <code class="docutils literal"><span class="pre">3.0</span></code> or higher).
+<p>To compile the library, you will need <code class="docutils literal"><span class="pre">git</span></code> and <a class="reference external" href="https://cmake.org/">cmake</a> (version <code class="docutils literal"><span class="pre">3.0</span></code> or higher).
 Use of the graphical version <code class="docutils literal"><span class="pre">ccmake</span></code> is recommended for easy
-configuration of environment variables.
-To compile, create a <code class="docutils literal"><span class="pre">build</span></code> directory and run the following commands:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">build</span>
+configuration of environment variables. Run the following commands in order:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">OrionQuest</span><span class="o">/</span><span class="n">Nova</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">Nova</span>
+<span class="n">mkdir</span> <span class="n">build</span>
 <span class="n">cd</span> <span class="n">build</span>
 <span class="n">ccmake</span> <span class="o">..</span>
 </pre></div>
 </div>
+<p>The library supports both single and double precision arithmetic by setting the
+environment variable <code class="docutils literal"><span class="pre">USE_DOUBLES</span></code> (by default, it is switched <code class="docutils literal"><span class="pre">OFF</span></code>).</p>
 </div>
 
 
@@ -126,7 +127,7 @@ To compile, create a <code class="docutils literal"><span class="pre">build</spa
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, Mridul Aanjaneya, Nathan Mitchell.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
     </div>
   </body>
 </html>

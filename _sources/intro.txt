@@ -14,11 +14,15 @@ parallelization. It provides support for simulating rigid body dynamics,
 compressible and incompressible fluids, volumetric elastic solids,
 and multi-material interactions.
 
-The library requires `cmake <https://cmake.org/>`_ (version ``3.0`` or higher).
+To compile the library, you will need ``git`` and `cmake <https://cmake.org/>`_ (version ``3.0`` or higher).
 Use of the graphical version ``ccmake`` is recommended for easy
-configuration of environment variables.
-To compile, create a ``build`` directory and run the following commands: ::
+configuration of environment variables. Run the following commands in order: ::
 
+    git clone https://github.com/OrionQuest/Nova.git
+    cd Nova
     mkdir build
     cd build
     ccmake ..
+
+The library supports both single and double precision arithmetic by setting the
+environment variable ``USE_DOUBLES`` (by default, it is switched ``OFF``).
