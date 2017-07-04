@@ -18,6 +18,10 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 set(USE_DOUBLES FALSE CACHE BOOL "Compile with double precision.")
 
+OPTION(BUILD_TESTS "Build Tests" ON)
+OPTION(BUILD_COVERAGE "Create test coverage report" OFF)
+OPTION(USE_SYSTEM_GTEST "Use GTEST from system libraries" OFF)
+
 if(USE_DOUBLES)
   target_compile_definitions( PUBLIC COMPILE_WITH_DOUBLE_SUPPORT=1)
 endif()
@@ -32,11 +36,13 @@ endif()
 SET(BUILD_SHARED_LIBS ON) 
 
 # Enable Cmake Unit testing support
-enable_testing()
+IF(BUILD_TESTS)
+    ENABLE_TESTING()
+    ADD_SUBDIRECTORY(tests)
+ENDIF()
 
 # Add the Core library and Projects paths 
 add_subdirectory(Library)
-#add_subdirectory(tests)
 #add_subdirectory(Projects)
 
 
