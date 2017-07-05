@@ -7,6 +7,7 @@
 #define __Vector__
 
 #include <nova/Tools/Utilities/Utilities.h>
+#include <eigen3/Eigen/Dense>
 #include <array>
 #include <algorithm>
 #include <cassert>
@@ -24,6 +25,8 @@ template <class T,int d,bool order_ascending=true>
 class Vector
 {
     using T_STORAGE                         = std::array<T,d>;
+    using Eigen_Vector                      = Eigen::Matrix<T,d,1>;
+
   public:
     typedef typename T_STORAGE::iterator iterator;
     typedef typename T_STORAGE::const_iterator const_iterator;
@@ -81,6 +84,15 @@ class Vector
     template<class T2> explicit Vector(const Vector<T2,d>& other)
     {
         for(int i=0;i<d;++i) _data[i]=(T)other[i];
+    }
+    
+    /*! Copy Constructor
+     *
+     * \param other A vector of the Eigen library.
+     */
+    Vector(const Eigen_Vector& other)
+    {
+        for(int i=0;i<d;++i) _data[i]=other[i];
     }
     
     /*! Assignment Operator
