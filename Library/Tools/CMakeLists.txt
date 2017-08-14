@@ -6,6 +6,10 @@ add_library( _nova_tools
 
 find_package(Boost 1.54 REQUIRED COMPONENTS filesystem)
 
+if(USE_DOUBLES)
+  target_compile_definitions(_nova_tools PUBLIC COMPILE_WITH_DOUBLE_SUPPORT=1)
+endif()
+
 target_include_directories( _nova_tools PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>

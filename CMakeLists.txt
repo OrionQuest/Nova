@@ -18,10 +18,6 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 set(USE_DOUBLES FALSE CACHE BOOL "Compile with double precision.")
 
-if(USE_DOUBLES)
-  target_compile_definitions( PUBLIC COMPILE_WITH_DOUBLE_SUPPORT=1)
-endif()
-
 if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Intel")
   if( CMAKE_VERSION VERSION_LESS 3.6.0 )
     message(FATAL_ERROR "Error: Intel Compiler is not fully supported until CMake version 3.6.0. Please update Cmake.")
