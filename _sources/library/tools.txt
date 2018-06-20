@@ -10,5 +10,6 @@ Classes
 .. toctree::
    :maxdepth: 2
 
+   Read_Write <tools/read_write>
    Utilities <tools/utilities>
    Vector <tools/vector>

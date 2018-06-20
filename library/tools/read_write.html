@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Utilities &mdash; Nova 1.0 documentation</title>
+    <title>Read_Write &mdash; Nova 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Nova 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Nova Library - Module Tools" href="../tools.html" />
-    <link rel="next" title="Vector" href="vector.html" />
-    <link rel="prev" title="Read_Write" href="read_write.html" /> 
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="Nova Library - Module Tools" href="../tools.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="vector.html" title="Vector"
+          <a href="utilities.html" title="Utilities"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="read_write.html" title="Read_Write"
+          <a href="../tools.html" title="Nova Library - Module Tools"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Nova 1.0 documentation</a> &raquo;</li>
           <li class="nav-item nav-item-1"><a href="../intro.html" >Nova Library</a> &raquo;</li>
@@ -52,52 +52,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="utilities">
-<h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
-<dl class="type">
-<dt id="_CPPv2N4Nova14Nova_UtilitiesE">
-<span id="Nova::Nova_Utilities"></span><span class="target" id="novanamespaceNova_1_1Nova__Utilities"></span><em class="property">namespace </em><code class="descclassname">Nova::</code><code class="descname">Nova_Utilities</code><a class="headerlink" href="#_CPPv2N4Nova14Nova_UtilitiesE" title="Permalink to this definition">¶</a></dt>
-<dd><div class="breathe-sectiondef container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+  <div class="section" id="read-write">
+<h1>Read_Write<a class="headerlink" href="#read-write" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
 <dt>
-<em class="property">template </em>&lt;<em class="property">class</em> T&gt;</dt>
-<dt id="_CPPv2N4Nova14Nova_Utilities13Exchange_SortER1TR1T">
-<span id="Nova::Nova_Utilities::Exchange_Sort__TR.TR"></span><span class="target" id="novanamespaceNova_1_1Nova__Utilities_1aa398201dc2c2f1ac7bfcea52b197f02f"></span>void <code class="descname">Exchange_Sort</code><span class="sig-paren">(</span>T &amp;<em>a</em>, T &amp;<em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova14Nova_Utilities13Exchange_SortER1TR1T" title="Permalink to this definition">¶</a></dt>
-<dd><p>Swapping Function</p>
-<p>Swaps the two arguments in ascending order. <dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last">
-<li><code class="first docutils literal"><span class="pre">a</span></code> - <p>First argument of type T. </p>
-</li>
-<li><code class="first docutils literal"><span class="pre">b</span></code> - <p>Second argument of type T. </p>
-</li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
+<span class="target" id="novaclassNova_1_1Read__Write"></span><em class="property">template </em>&lt;<em class="property">class</em> T&gt;</dt>
+<dt id="_CPPv2N4Nova10Read_WriteE">
+<span id="Nova::Read_Write"></span><em class="property">class </em><code class="descclassname">Nova::</code><code class="descname">Read_Write</code><a class="headerlink" href="#_CPPv2N4Nova10Read_WriteE" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv2N4Nova10Read_Write4ReadERNSt7istreamER1T">
+<span id="Nova::Read_Write::Read__isR.TR"></span><span class="target" id="novaclassNova_1_1Read__Write_1ae7f253d86bb5e24a011be3a21ca52365"></span><em class="property">static</em> void <code class="descname">Read</code><span class="sig-paren">(</span>std::istream &amp;<em>input</em>, T &amp;<em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova10Read_Write4ReadERNSt7istreamER1T" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
-<dt>
-<em class="property">template </em>&lt;<em class="property">class</em> T&gt;</dt>
-<dt id="_CPPv2N4Nova14Nova_Utilities13Exchange_SortER1TR1TR1T">
-<span id="Nova::Nova_Utilities::Exchange_Sort__TR.TR.TR"></span><span class="target" id="novanamespaceNova_1_1Nova__Utilities_1a1e5e9c0031bbde3a69879244c5f4ea5c"></span>void <code class="descname">Exchange_Sort</code><span class="sig-paren">(</span>T &amp;<em>a</em>, T &amp;<em>b</em>, T &amp;<em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova14Nova_Utilities13Exchange_SortER1TR1TR1T" title="Permalink to this definition">¶</a></dt>
-<dd><p>Swapping Function</p>
-<p>Swaps the three arguments in ascending order. <dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last">
-<li><code class="first docutils literal"><span class="pre">a</span></code> - <p>First argument of type T. </p>
-</li>
-<li><code class="first docutils literal"><span class="pre">b</span></code> - <p>Second argument of type T. </p>
-</li>
-<li><code class="first docutils literal"><span class="pre">c</span></code> - <p>Third argument of type T. </p>
-</li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
+<dt id="_CPPv2N4Nova10Read_Write5WriteERNSt7ostreamERK1T">
+<span id="Nova::Read_Write::Write__osR.TCR"></span><span class="target" id="novaclassNova_1_1Read__Write_1a7e8bf9202849b2238aaac13d93342b0f"></span><em class="property">static</em> void <code class="descname">Write</code><span class="sig-paren">(</span>std::ostream &amp;<em>output</em>, <em class="property">const</em> T &amp;<em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Nova10Read_Write5WriteERNSt7ostreamERK1T" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 </dd></dl>
@@ -111,15 +83,15 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="read_write.html"
-                        title="previous chapter">Read_Write</a></p>
+  <p class="topless"><a href="../tools.html"
+                        title="previous chapter">Nova Library - Module Tools</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="vector.html"
-                        title="next chapter">Vector</a></p>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">Utilities</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/library/tools/utilities.txt"
+      <li><a href="../../_sources/library/tools/read_write.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -147,10 +119,10 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="vector.html" title="Vector"
+          <a href="utilities.html" title="Utilities"
              >next</a> |</li>
         <li class="right" >
-          <a href="read_write.html" title="Read_Write"
+          <a href="../tools.html" title="Nova Library - Module Tools"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Nova 1.0 documentation</a> &raquo;</li>
           <li class="nav-item nav-item-1"><a href="../intro.html" >Nova Library</a> &raquo;</li>
