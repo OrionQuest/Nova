@@ -10,18 +10,32 @@
 #include <utility>
 
 namespace Nova{
-namespace Nova_Utilities{
-template<class T>
-inline void Exchange_Sort(T& a,T& b)
-{if(a>b) std::swap(a,b);}
-
-template<class T>
-inline void Exchange_Sort(T& a,T& b,T& c)
+namespace Nova_Utilities
 {
-    if(a>b) std::swap(a,b);
-    if(b>c) std::swap(b,c);
-    if(a>b) std::swap(a,b);
-}
+    /*! Swapping Function
+     *
+     * Swaps the two arguments in ascending order.
+     * \param a First argument of type T.
+     * \param b Second argument of type T.
+     */
+    template<class T>
+    inline void Exchange_Sort(T& a,T& b)
+    {if(a>b) std::swap(a,b);}
+
+    /*! Swapping Function
+     *
+     * Swaps the three arguments in ascending order.
+     * \param a First argument of type T.
+     * \param b Second argument of type T.
+     * \param c Third argument of type T.
+     */
+    template<class T>
+    inline void Exchange_Sort(T& a,T& b,T& c)
+    {
+        if(a>b) std::swap(a,b);
+        if(b>c) std::swap(b,c);
+        if(a>b) std::swap(a,b);
+    }
 }
 }
 #endif

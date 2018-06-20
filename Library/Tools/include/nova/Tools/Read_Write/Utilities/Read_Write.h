@@ -3,8 +3,8 @@
 //!#####################################################################
 // Class Read_Write
 //######################################################################
-#ifndef __NOVA_Read_Write__
-#define __NOVA_Read_Write__
+#ifndef __Read_Write__
+#define __Read_Write__
 
 #include <cassert>
 #include <cstring>
