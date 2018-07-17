@@ -1,7 +1,12 @@
 # Target for Tools
 add_library( _nova_tools
   src/Grids/Grid.cpp
+  src/Log/Debug_Utilities.cpp
+  src/Log/Log.cpp
+  src/Log/Log_Entry.cpp
+  src/Parsing/Parse_Args.cpp
   src/Utilities/File_Utilities.cpp
+  src/Utilities/Timer.cpp
   src/Vectors/Vector_2D.cpp
   src/Vectors/Vector_3D.cpp
   )

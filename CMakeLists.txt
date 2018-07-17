@@ -32,8 +32,8 @@ enable_testing()
 
 # Add the Core library and Projects paths 
 add_subdirectory(Library)
-#add_subdirectory(tests)
-#add_subdirectory(Projects)
+add_subdirectory(Tests)
+add_subdirectory(Projects)
 
 
 # add a target to generate API documentation with Doxygen/Sphinx
