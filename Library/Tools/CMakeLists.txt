@@ -1,10 +1,14 @@
 # Target for Tools
 add_library( _nova_tools
   src/Grids/Grid.cpp
+  src/Krylov_Solvers/Conjugate_Gradient.cpp
+  src/Krylov_Solvers/Krylov_System_Base.cpp
   src/Log/Debug_Utilities.cpp
   src/Log/Log.cpp
   src/Log/Log_Entry.cpp
   src/Parsing/Parse_Args.cpp
+  src/Utilities/Driver.cpp
+  src/Utilities/Example.cpp
   src/Utilities/File_Utilities.cpp
   src/Utilities/Timer.cpp
   src/Vectors/Vector_2D.cpp
