@@ -3,10 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Nova's documentation!
-================================
+Multi-Physics Simulation with Nova
+==================================
 
-Contents:
+Nova is a high-performance library for Computational Physics. In terms of
+design, it draws inspiration from its elder brother `PhysBAM <http://physbam.stanford.edu/>`_,
+but uses modern libraries such as `STL <https://en.wikipedia.org/wiki/Standard_Template_Library>`_,
+`Boost <https://www.boost.org/>`_, `Assimp <http://www.assimp.org/>`_, etc.,
+to reuse existing open-source implementations whenever possible. Parts of it have been (and continue to be) parallelized using
+`OpenMP <https://www.openmp.org/>`_. Our goal is to make it a versatile library
+for various multi-physics problems and geometric computation. This documentation provides tutorials
+on how to use the library.
 
 .. toctree::
    :maxdepth: 2
