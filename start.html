@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; Nova 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Nova 1.0 documentation" href="index.html" />
+    <link rel="next" title="Configuring OpenGL" href="viewer.html" />
+    <link rel="prev" title="Multi-Physics Simulation with Nova" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="viewer.html" title="Configuring OpenGL"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Multi-Physics Simulation with Nova"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nova 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The Nova library can be downloaded from <a class="reference external" href="https://github.com/">GitHub</a> using
+the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/OrionQuest/Nova.git
+</pre></div>
+</div>
+<p>Example projects that use the Nova core library live in a separate repository,
+and can be downloaded using the following commands:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd Nova/Projects
+git clone https://github.com/OrionQuest/Nova_Examples.git
+</pre></div>
+</div>
+<p>The build system uses <a class="reference external" href="https://cmake.org/">cmake</a> (version <code class="docutils literal"><span class="pre">3.0</span></code> or higher).
+We recommend the use of the graphical version <code class="docutils literal"><span class="pre">ccmake</span></code> for easy configuration
+of the environment variables. To compile, run the following commands in order:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd Nova
+mkdir build
+cd build
+ccmake ..
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">CMAKE_BUILD_TYPE</span></code> to <code class="docutils literal"><span class="pre">Release</span></code>, and turn on the following flags:
+<code class="docutils literal"><span class="pre">ENABLE_ASSIMP_PLUGIN</span></code>, <code class="docutils literal"><span class="pre">ENABLE_FREETYPE_PLUGIN</span></code>, <code class="docutils literal"><span class="pre">ENABLE_GRID_PLUGIN</span></code>,
+<code class="docutils literal"><span class="pre">ENABLE_TEXTFILERENDERER_PLUGIN</span></code>. As our first example, we will simulate
+volumetric elastic objects, so turn on the corresponding project using the
+following two additional flags: <code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES</span></code>,
+<code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES_PLUGIN</span></code>. Press <code class="docutils literal"><span class="pre">c</span></code> to configure, and then <code class="docutils literal"><span class="pre">g</span></code>
+to generate the <code class="docutils literal"><span class="pre">Makefile</span></code>. Finally, run the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>make -j 8
+</pre></div>
+</div>
+<p>Nova depends on several libraries such as <a class="reference external" href="https://glm.g-truc.net/0.9.9/index.html">GLM</a>, <a class="reference external" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen</a>,
+<a class="reference external" href="https://www.freetype.org/">FreeType</a>, <a class="reference external" href="http://www.glfw.org/">GLFW</a> (version <code class="docutils literal"><span class="pre">3.0</span></code>), <a class="reference external" href="http://glew.sourceforge.net/">GLEW</a>, <a class="reference external" href="https://www.boost.org/">Boost</a>
+(in particular, <code class="docutils literal"><span class="pre">filesystem</span></code>, <code class="docutils literal"><span class="pre">program_options</span></code>, and <code class="docutils literal"><span class="pre">regex</span></code>), <a class="reference external" href="http://www.assimp.org/">Assimp</a>, etc. Most of these libraries can be directly installed from the
+package manager on Linux systems such as Ubuntu (version <code class="docutils literal"><span class="pre">14.04</span></code> or higher).
+At the moment, the <code class="docutils literal"><span class="pre">cmake</span></code> files do not do a perfect job in finding all the missing libraries. We apologize for this slight inconvenience and will hopefully fix this in the near future.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Multi-Physics Simulation with Nova</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="viewer.html"
+                        title="next chapter">Configuring OpenGL</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/start.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="viewer.html" title="Configuring OpenGL"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Multi-Physics Simulation with Nova"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nova 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2017, Mridul Aanjaneya, Nathan Mitchell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
