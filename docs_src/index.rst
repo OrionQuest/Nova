@@ -18,8 +18,8 @@ on how to use the library.
 .. toctree::
    :maxdepth: 2
               
-   Introduction <intro>
-   Library <library/intro>
+   Getting Started <start>
+   Configuring OpenGL <viewer>
 
 Indices and tables
 ==================
