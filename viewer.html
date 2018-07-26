@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Nova 1.0 documentation" href="index.html" />
+    <link rel="next" title="Elasticity Simulation" href="elasticity.html" />
     <link rel="prev" title="Getting Started" href="start.html" /> 
   </head>
   <body role="document">
@@ -33,6 +34,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="elasticity.html" title="Elasticity Simulation"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="start.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
@@ -48,7 +52,18 @@
   <div class="section" id="configuring-opengl">
 <h1>Configuring OpenGL<a class="headerlink" href="#configuring-opengl" title="Permalink to this headline">¶</a></h1>
 <p>The OpenGL viewer (available in <code class="docutils literal"><span class="pre">Nova_Examples/opengl</span></code>) requires some symbolic links
-to be placed in the <code class="docutils literal"><span class="pre">build</span></code> directory for proper configuration.</p>
+to be placed in the <code class="docutils literal"><span class="pre">build</span></code> directory for proper configuration. Run the
+following commands in order:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd build/
+ln -s ../Projects/Nova_Examples/opengl/example/nova.conf .
+ln -s ../Projects/Nova_Examples/opengl/example/fonts/ .
+</pre></div>
+</div>
+<p>The viewer supports a plugin-based architecture, in the sense that every project
+can define its own plugin on how to view the generated data. While this does
+place the burden on the developer to write a separate plugin per project, it
+does have the nice benefit of moving away from hard coding things in some
+master file.</p>
 </div>
 
 
@@ -60,6 +75,9 @@ to be placed in the <code class="docutils literal"><span class="pre">build</span
   <h4>Previous topic</h4>
   <p class="topless"><a href="start.html"
                         title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="elasticity.html"
+                        title="next chapter">Elasticity Simulation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -90,6 +108,9 @@ to be placed in the <code class="docutils literal"><span class="pre">build</span
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="elasticity.html" title="Elasticity Simulation"
+             >next</a> |</li>
         <li class="right" >
           <a href="start.html" title="Getting Started"
              >previous</a> |</li>
