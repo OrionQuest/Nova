@@ -20,6 +20,7 @@ on how to use the library.
               
    Getting Started <start>
    Configuring OpenGL <viewer>
+   Elasticity Simulation <elasticity>
 
 Indices and tables
 ==================
