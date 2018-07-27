@@ -8,9 +8,10 @@ following commands in order: ::
     cd build/
     ln -s ../Projects/Nova_Examples/opengl/example/nova.conf .
     ln -s ../Projects/Nova_Examples/opengl/example/fonts/ .
+    ln -s ../Projects/Nova_Examples/opengl/plugins/Grid/shaders/ .
 
-The viewer supports a plugin-based architecture, in the sense that every project
+The viewer uses the modern GL pipeline and supports a plugin-based architecture, in the sense that every project
 can define its own plugin on how to view the generated data. While this does
 place the burden on the developer to write a separate plugin per project, it
-does have the nice benefit of moving away from hard coding things in some
+has the nice benefit of moving away from hard coding things in some
 master file.
