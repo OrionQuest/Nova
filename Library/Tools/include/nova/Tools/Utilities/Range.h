@@ -63,6 +63,9 @@ class Range
         return max_corner-min_corner;
     }
 
+    T Size() const
+    {return Edge_Lengths().Product();}
+
     Range<T,d>& operator=(const Range<T,d>& rhs)
     {
         if(this==&rhs) return *this;

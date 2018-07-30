@@ -7,6 +7,7 @@ add_library( _nova_tools
   src/Log/Log.cpp
   src/Log/Log_Entry.cpp
   src/Parsing/Parse_Args.cpp
+  src/Random_Numbers/MT19937.cpp
   src/Utilities/Driver.cpp
   src/Utilities/Example.cpp
   src/Utilities/File_Utilities.cpp
