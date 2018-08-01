@@ -46,7 +46,7 @@ Write_Substep(const std::string& title,const int substep,const int level)
     if(level<=write_substeps_level)
     {
         frame_title=title;
-        *output<<"Writing substep ["<<frame_title<<"]: output_number="<<output_number+1<<", time="<<time<<", frame="<<current_frame<<", substep="<<substep<<std::endl;
+        *output<<"Writing substep ["<<frame_title<<"]: output_number="<<output_number+1<<", frame="<<current_frame<<", substep="<<substep<<std::endl;
         Write_Output_Files(++output_number);frame_title="";
     }
 }

@@ -29,6 +29,7 @@ target_compile_features( _nova_geometry
 
 target_link_libraries( _nova_geometry
   PUBLIC
+  nova::tools
   )
 
 add_library( nova::geometry ALIAS _nova_geometry )

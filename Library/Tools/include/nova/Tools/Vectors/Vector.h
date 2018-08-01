@@ -417,8 +417,8 @@ class Vector
      */
     bool operator<(const Vector& other) const
     {
-        if(order_ascending) for(int v=0;v<d;++v) if(_data[v]>=other[v]) return false;
-        else for(int v=d-1;v>=0;--v) if(_data[v]>=other[v]) return false;
+        if(order_ascending){for(int v=0;v<d;++v){if(_data[v]>=other[v]){return false;}}}
+        else{for(int v=d-1;v>=0;--v){if(_data[v]>=other[v]){return false;}}}
         return true;
     }
 
@@ -428,8 +428,8 @@ class Vector
      */
     bool operator>(const Vector& other) const
     {
-        if(order_ascending) for(int v=0;v<d;++v) if(_data[v]<=other[v]) return false;
-        else for(int v=d-1;v>=0;--v) if(_data[v]<=other[v]) return false;
+        if(order_ascending){for(int v=0;v<d;++v){if(_data[v]<=other[v]){return false;}}}
+        else{for(int v=d-1;v>=0;--v){if(_data[v]<=other[v]){return false;}}}
         return true;
     }
 
@@ -439,8 +439,8 @@ class Vector
      */
     bool operator<=(const Vector& other) const
     {
-        if(order_ascending) for(int v=0;v<d;++v) if(_data[v]>other[v]) return false;
-        else for(int v=d-1;v>=0;--v) if(_data[v]>other[v]) return false;
+        if(order_ascending){for(int v=0;v<d;++v){if(_data[v]>other[v]){return false;}}}
+        else{for(int v=d-1;v>=0;--v){if(_data[v]>other[v]){return false;}}}
         return true;
     }
 
@@ -450,8 +450,8 @@ class Vector
      */
     bool operator>=(const Vector& other) const
     {
-        if(order_ascending) for(int v=0;v<d;++v) if(_data[v]<other[v]) return false;
-        else for(int v=d-1;v>=0;--v) if(_data[v]<other[v]) return false;
+        if(order_ascending){for(int v=0;v<d;++v){if(_data[v]<other[v]){return false;}}}
+        else{for(int v=d-1;v>=0;--v){if(_data[v]<other[v]){return false;}}}
         return true;
     }
 

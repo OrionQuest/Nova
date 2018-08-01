@@ -171,6 +171,7 @@ class Arg_Data
             case STRING:    Log::cerr<<str<<desc;
                             if(string_default.length()) Log::cerr<<" (default "<<string_default<<")";
                             break;
+            default:        break;
         }
     }
 };
