@@ -36,6 +36,15 @@ namespace Nova_Utilities
         if(b>c) std::swap(b,c);
         if(a>b) std::swap(a,b);
     }
+
+    /*! Squaring function
+     *
+     * Returns the square a given value.
+     * \param a Argument of type T.
+     */
+    template<class T>
+    inline T Sqr(const T a)
+    {return a*a;}
 }
 }
 #endif

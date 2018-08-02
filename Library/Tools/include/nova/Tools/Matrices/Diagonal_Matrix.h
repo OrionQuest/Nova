@@ -60,6 +60,18 @@ class Diagonal_Matrix
         else return (T)0.;
     }
 
+    T& operator()(const int i)
+    {
+        assert(i>=0 && i<d);
+        return _data[i];
+    }
+
+    const T& operator()(const int i) const
+    {
+        assert(i>=0 && i<d);
+        return _data[i];
+    }
+
     Diagonal_Matrix operator*(const T& a) const
     {return Diagonal_Matrix(_data*a);}
 
@@ -88,6 +100,23 @@ class Diagonal_Matrix
 
     Diagonal_Matrix Inverse() const
     {return Diagonal_Matrix((T)1./_data);}
+
+    T Trace() const
+    {return _data.Sum();}
+
+    Diagonal_Matrix Logarithm() const
+    {
+        Diagonal_Matrix ret;
+        for(int i=0;i<d;++i) ret(i)=log(_data(i));
+        return ret;
+    }
+
+    T Frobenius_Norm_Squared() const
+    {
+        T value;
+        for(int i=0;i<d;++i) value += (_data[i])*(_data[i]);
+        return value;
+    }
 };
 
 template<class T,int d>

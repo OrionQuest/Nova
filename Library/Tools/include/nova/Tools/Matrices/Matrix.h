@@ -85,6 +85,14 @@ class Matrix
     Matrix<T,d1,d3> operator*(const Matrix<T,d2,d3>& m) const
     {return Matrix<T,d1,d3>(_data*m._data);}
 
+    template<int d3>
+    Matrix<T,d2,d3> Transpose_Times(const Matrix<T,d1,d3>& m) const
+    {return Matrix<T,d2,d3>(_data.transpose()*m._data);}
+
+    template<int d3>
+    Matrix<T,d1,d3> Times_Transpose(const Matrix<T,d3,d2>& m) const
+    {return Matrix<T,d1,d3>(_data*m._data.transpose());}
+
     Matrix& operator*=(const Matrix<T,d2,d2>& m)
     {return *this=*this*m;}
 
@@ -192,6 +200,33 @@ Matrix<T,d1,d2> operator*(const T& a,const Matrix<T,d1,d2>& m)
 template<class T,int d1,int d2>
 std::ostream& operator<<(std::ostream& output,const Matrix<T,d1,d2>& m)
 {output<<m._data;return output;}
+
+template<class T>
+Matrix<T,2,2> Cofactor_Matrix(const Matrix<T,2,2>& m)
+{
+    Matrix<T,2,2> ret;
+    ret(0,0)= m(1,1);
+    ret(1,0)=-m(0,1);
+    ret(0,1)=-m(1,0);
+    ret(1,1)= m(0,0);
+    return ret;
+}
+
+template<class T>
+Matrix<T,3,3> Cofactor_Matrix(const Matrix<T,3,3>& m)
+{
+    Matrix<T,3,3> ret;
+    ret(0,0)=m(1,1)*m(2,2) - m(2,1)*m(1,2);
+    ret(1,0)=m(2,1)*m(0,2) - m(0,1)*m(2,2);
+    ret(2,0)=m(0,1)*m(1,2) - m(1,1)*m(0,2);
+    ret(0,1)=m(2,0)*m(1,2) - m(1,0)*m(2,2);
+    ret(1,1)=m(0,0)*m(2,2) - m(2,0)*m(0,2);
+    ret(2,1)=m(1,0)*m(0,2) - m(0,0)*m(1,2);
+    ret(0,2)=m(1,0)*m(2,1) - m(2,0)*m(1,1);
+    ret(1,2)=m(2,0)*m(0,1) - m(0,0)*m(2,1);
+    ret(2,2)=m(0,0)*m(1,1) - m(1,0)*m(0,1);
+    return ret;
+}
 }
 #include <nova/Tools/Read_Write/Matrices/Read_Write_Matrix.h>
 #endif
