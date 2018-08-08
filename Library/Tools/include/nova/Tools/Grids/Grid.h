@@ -33,6 +33,12 @@ class Grid
         Initialize(counts_input,domain_input);
     }
 
+    const T_INDEX& Number_Of_Cells() const
+    {return counts;}
+
+    T_INDEX Number_Of_Nodes() const
+    {return counts+1;}
+
     TV Node(const T_INDEX& index) const
     {
         return domain.min_corner+TV(index-1)*dX;
@@ -62,10 +68,26 @@ class Grid
     Range<int,d> Cell_Indices(const int number_of_ghost_cells=0) const
     {return Range<int,d>(T_INDEX(1),counts).Thickened(number_of_ghost_cells);}
 
+    Range<int,d> Node_Indices(const int number_of_ghost_cells=0) const
+    {return Range<int,d>(T_INDEX(1),Number_Of_Nodes()).Thickened(number_of_ghost_cells);}
+
     T_INDEX Clamp_To_Cell(const TV& X) const
     {
         T_INDEX index=T_INDEX((X-domain.min_corner)*one_over_dX)+1;
         return Cell_Indices().Clamp(index);
+    }
+
+    T_INDEX Cell(const TV& location,const int number_of_ghost_cells) const
+    {
+        T_INDEX index;
+        Cell(location,index,number_of_ghost_cells);
+        return index;
+    }
+
+    void Cell(const TV& location,T_INDEX& index,const int number_of_ghost_cells) const
+    {
+        int number_of_ghost_cells_plus_one=number_of_ghost_cells+1;
+        index=T_INDEX((location-domain.min_corner)*one_over_dX+number_of_ghost_cells_plus_one)-number_of_ghost_cells;
     }
 
 //##################################################################### 
