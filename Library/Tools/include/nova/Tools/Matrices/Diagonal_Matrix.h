@@ -98,6 +98,12 @@ class Diagonal_Matrix
         return result;
     }
 
+    Diagonal_Matrix operator*(const Diagonal_Matrix& other) const
+    {return Diagonal_Matrix(_data*other._data);}
+
+    Diagonal_Matrix& operator*=(const Diagonal_Matrix& other)
+    {return *this=*this*other;}
+
     Diagonal_Matrix Inverse() const
     {return Diagonal_Matrix((T)1./_data);}
 
