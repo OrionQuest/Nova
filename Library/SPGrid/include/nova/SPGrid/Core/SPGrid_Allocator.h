@@ -6,7 +6,7 @@
 #ifndef __SPGrid_Allocator__
 #define __SPGrid_Allocator__
 
-#include <SPGrid/Core/SPGrid_Allocator_Base.h>
+#include <nova/SPGrid/Core/SPGrid_Allocator_Base.h>
 
 namespace SPGrid{
 //#####################################################################

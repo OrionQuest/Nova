@@ -7,8 +7,8 @@
 #define __SPGrid_Allocator_Base__
 
 #include <type_traits>
-#include <SPGrid/Core/SPGrid_Mask.h>
-#include <SPGrid/Core/SPGrid_Array.h>
+#include <nova/SPGrid/Core/SPGrid_Mask.h>
+#include <nova/SPGrid/Core/SPGrid_Array.h>
 
 namespace SPGrid{
 //#####################################################################
