@@ -13,6 +13,7 @@
 #include <nova/Tools/Arrays/Array.h>
 #include <nova/Tools/Grids/Grid.h>
 #include <nova/Tools/Utilities/File_Utilities.h>
+#include <nova/Tools/Utilities/Range_Iterator.h>
 
 namespace Nova{
 template<class Struct_type,class T,int d>
@@ -126,14 +127,51 @@ class Grid_Hierarchy
         Write_Channel<unsigned>(output_directory+"/"+std::to_string(frame)+"/flags",&Struct_type::flags);
     }
 
+    void Read_Hierarchy(const std::string& input_directory,const int frame)
+    {
+        Read_Metadata(input_directory);
+
+        const unsigned levels=Levels();
+        std::istream* input1=File_Utilities::Safe_Open_Input(input_directory+"/"+std::to_string(frame)+"/flags");
+        std::istream* input2=File_Utilities::Safe_Open_Input(input_directory+"/"+std::to_string(frame)+"/block_offsets");
+        for(unsigned level=0;level<levels;++level){unsigned number_of_blocks=0;
+            auto block_size=Allocator(level).Block_Size();
+            Read_Write<unsigned>::Read(*input2,number_of_blocks);
+            for(unsigned block=0;block < number_of_blocks;++block){T_INDEX base_index;
+                Read_Write<T_INDEX>::Read(*input2,base_index);
+                Range_Iterator<d,T_INDEX> range_iterator(T_INDEX(),*reinterpret_cast<T_INDEX*>(&block_size)-1);
+                for(unsigned e=0;e<Flag_array_mask::elements_per_block;++e){
+                    unsigned flag;const T_INDEX index=base_index+range_iterator.Index();
+                    uint64_t offset=Flag_array_mask::Linear_Offset(index._data);
+                    Read_Write<unsigned>::Read(*input1,flag);
+                    Set<unsigned>(level,&Struct_type::flags).Mask(offset,flag);
+                    range_iterator.Next();}}}
+
+        delete input2;delete input1;
+        Update_Block_Offsets();
+    }
+
     void Write_Metadata(const std::string& output_directory)
     {
         std::ostream* output=(d==3)?File_Utilities::Safe_Open_Output(output_directory+"/common/hierarchy.struct3d"):File_Utilities::Safe_Open_Output(output_directory+"/common/hierarchy.struct2d");
-        Read_Write<int>::Write(*output,Levels());
-        Read_Write<int>::Write(*output,Flag_array_mask::elements_per_block);
+        Read_Write<unsigned>::Write(*output,Levels());
+        Read_Write<unsigned>::Write(*output,Flag_array_mask::elements_per_block);
         Index_type block_size=Allocator(0).Block_Size();
-        for(int v=0;v<d;++v) Read_Write<int>::Write(*output,block_size[v]);
+        for(int v=0;v<d;++v) Read_Write<unsigned>::Write(*output,block_size[v]);
         delete output;
+    }
+
+    void Read_Metadata(const std::string& input_directory)
+    {
+        std::istream* input=(d==3)?File_Utilities::Safe_Open_Input(input_directory+"/common/hierarchy.struct3d"):File_Utilities::Safe_Open_Input(input_directory+"/common/hierarchy.struct2d");
+        unsigned levels;Read_Write<unsigned>::Read(*input,levels);
+        unsigned elements_per_block;Read_Write<unsigned>::Read(*input,elements_per_block);
+        Index_type block_size;
+        for(int v=0;v<d;++v) Read_Write<unsigned>::Read(*input,block_size[v]);
+        delete input;
+        Grid<T,d> grid;
+        File_Utilities::Read_From_File(input_directory+"/common/fine_grid",grid);
+        Initialize(grid.counts,grid.domain,levels);
     }
 
     template<class T_FIELD>
@@ -145,6 +183,17 @@ class Grid_Hierarchy
             for(Block_Iterator iterator(Page_Map(level).Get_Blocks());iterator.Valid();iterator.Next())
                 Read_Write<T_FIELD>::Write(*output,data(iterator.Offset()));}
         delete output;
+    }
+
+    template<class T_FIELD>
+    void Read_Channel(const std::string& filename,T_FIELD Struct_type::* channel)
+    {
+        std::istream* input=File_Utilities::Safe_Open_Input(filename);
+        for(unsigned level=0;level<Levels();++level){
+            auto data=Allocator(level).Get_Array(channel);
+            for(Block_Iterator iterator(Page_Map(level).Get_Blocks());iterator.Valid();iterator.Next())
+                Read_Write<T_FIELD>::Read(*input,data(iterator.Offset()));}
+        delete input;
     }
 
     void Write_Block_Offsets(const std::string& filename)
