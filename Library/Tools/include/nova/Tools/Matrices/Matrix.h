@@ -15,7 +15,7 @@ template<class T,int d1,int d2>
 class Matrix
 {
     using T_Storage             = Eigen::Matrix<T,d1,d2>;
-    using SVD_Solver            = Eigen::JacobiSVD<T_Storage>;
+    using SVD_Solver            = Eigen::JacobiSVD<Eigen::MatrixXf>;
     using Eigen_Solver          = Eigen::SelfAdjointEigenSolver<T_Storage>;
 
   public:
