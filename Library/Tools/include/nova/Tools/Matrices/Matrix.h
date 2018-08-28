@@ -85,6 +85,13 @@ class Matrix
     Matrix<T,d1,d3> operator*(const Matrix<T,d2,d3>& m) const
     {return Matrix<T,d1,d3>(_data*m._data);}
 
+    static Matrix<T,d1,d2> Outer_Product(const Vector<T,d1>& u,const Vector<T,d2>& v)
+    {
+        Matrix<T,d1,d2> ret;
+        for(int i=0;i<d1;++i) for(int j=0;j<d2;++j) ret(i,j)=u(i)*v(j);
+        return ret;
+    }
+
     template<int d3>
     Matrix<T,d2,d3> Transpose_Times(const Matrix<T,d1,d3>& m) const
     {return Matrix<T,d2,d3>(_data.transpose()*m._data);}
