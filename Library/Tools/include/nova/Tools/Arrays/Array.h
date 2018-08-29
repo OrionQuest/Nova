@@ -93,13 +93,22 @@ class Array
     void Append(const T& x)
     {_data.push_back(x);}
 
-    /*! Append Unique Operator
+    /*! Append_Unique Operator
      *
      * \param x Element to be inserted in the array if it is not already present.
      */
     void Append_Unique(const T& x)
     {
         if(std::find(cbegin(),cend(),x)==cend()) _data.push_back(x);
+    }
+
+    /*! Append_Elements Operator
+     *
+     * \param other Array whose elements are inserted at the end.
+     */
+    void Append_Elements(const Array& other)
+    {
+        _data.insert(_data.end(),other._data.begin(),other._data.end());
     }
 
     /*! Checks if the array is empty.
@@ -247,6 +256,13 @@ class Array
     template<class T2>
     static void Copy(const T2 c1,const Array& v1,const Array& v2,Array& result)
     {result=c1*v1+v2;}
+
+    /*! Static sort operator
+     *
+     * \param v The given array.
+     */
+    static void Sort(Array& v)
+    {std::sort(v._data.begin(),v._data.end());}
 
     // accessors
 
