@@ -9,9 +9,6 @@
 #include <nova/Tools/Vectors/Vector.h>
 
 namespace Nova{
-
-template<class T,int d1,int d2> class Matrix;
-
 template<class T,int d>
 class Diagonal_Matrix
 {
@@ -89,14 +86,6 @@ class Diagonal_Matrix
 
     Diagonal_Matrix& operator+=(const Diagonal_Matrix& other)
     {return *this=*this+other;}
-
-    template<int d1>
-    Matrix<T,d,d1> operator*(const Matrix<T,d,d1>& other) const
-    {
-        Matrix<T,d,d1> result;
-        for(int i=0;i<d;++i) for(int j=0;j<d1;++j) result(i,j)=_data(i)*other(i,j);
-        return result;
-    }
 
     Diagonal_Matrix operator*(const Diagonal_Matrix& other) const
     {return Diagonal_Matrix(_data*other._data);}
