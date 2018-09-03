@@ -13,6 +13,4 @@ Orthogonal_Vector() const
 }
 //######################################################################
 template class Nova::Vector<float,2>;
-#ifdef COMPILE_WITH_DOUBLE_SUPPORT
 template class Nova::Vector<double,2>;
-#endif

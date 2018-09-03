@@ -78,6 +78,79 @@ class Symmetric_Matrix<T,2>
     bool operator!=(const Symmetric_Matrix& A) const
     {return !(*this==A);}
 
+    Symmetric_Matrix operator-() const
+    {return Symmetric_Matrix(-x11,-x21,-x22);}
+
+    Symmetric_Matrix& operator+=(const Symmetric_Matrix& A)
+    {x11+=A.x11;x21+=A.x21;x22+=A.x22;return *this;}
+
+    Symmetric_Matrix& operator+=(const T& a)
+    {x11+=a;x22+=a;return *this;}
+
+    Symmetric_Matrix& operator-=(const Symmetric_Matrix& A)
+    {x11-=A.x11;x21-=A.x21;x22-=A.x22;return *this;}
+
+    Symmetric_Matrix& operator-=(const T& a)
+    {x11-=a;x22-=a;return *this;}
+
+    Symmetric_Matrix& operator*=(const T a)
+    {x11*=a;x21*=a;x22*=a;return *this;}
+
+    Symmetric_Matrix& operator/=(const T a)
+    {
+        assert(a!=0);
+        T s=(T)1./a;
+        x11*=s;x21*=s;x22*=s;
+        return *this;
+    }
+
+    Symmetric_Matrix operator+(const Symmetric_Matrix& A) const
+    {return Symmetric_Matrix(x11+A.x11,x21+A.x21,x22+A.x22);}
+
+    Symmetric_Matrix operator+(const T a) const
+    {return Symmetric_Matrix(x11+a,x21,x22+a);}
+
+    Symmetric_Matrix operator-(const Symmetric_Matrix& A) const
+    {return Symmetric_Matrix(x11-A.x11,x21-A.x21,x22-A.x22);}
+
+    Symmetric_Matrix operator-(const T a) const
+    {return Symmetric_Matrix(x11-a,x21,x22-a);}
+
+    Symmetric_Matrix operator*(const T a) const
+    {return Symmetric_Matrix(a*x11,a*x21,a*x22);}
+
+    Symmetric_Matrix operator/(const T a) const
+    {assert(a!=0);return *this*((T)1./a);}
+
+    TV operator*(const TV& v) const
+    {return TV({x11*v[0]+x21*v[1],x21*v[0]+x22*v[1]});}
+
+    T Determinant() const
+    {return x11*x22-x21*x21;}
+
+    Symmetric_Matrix Inverse() const
+    {return Symmetric_Matrix(x22,-x21,x11)/Determinant();}
+
+    Symmetric_Matrix Transposed() const
+    {return *this;}
+
+    void Transpose() {}
+
+    Symmetric_Matrix Cofactor_Matrix()
+    {return Symmetric_Matrix(x22,-x21,x11);}
+
+    TV Largest_Column() const
+    {return fabs(x11)>fabs(x22)?TV({x11,x21}):TV({x21,x22});}
+
+    TV Largest_Column_Normalized() const
+    {
+        T sqr11=Nova_Utilities::Sqr(x11),sqr12=Nova_Utilities::Sqr(x21),sqr22=Nova_Utilities::Sqr(x22);
+        T scale1=sqr11+sqr12,scale2=sqr12+sqr22;
+        if(scale1>scale2) return TV({x11,x21})/std::sqrt(scale1);
+        else if(scale2>0) return TV({x21,x22})/std::sqrt(scale2);
+        return TV({1,0});
+    }
+
     Symmetric_Matrix Positive_Definite_Part() const
     {
         Diagonal_Matrix<T,2> D;
@@ -109,6 +182,21 @@ class Symmetric_Matrix<T,2>
         Matrix<T,2> BA=(A*B).Transposed();
         return Symmetric_Matrix<T,2>(A.x[0]*BA.x[0]+A.x[2]*BA.x[1],A.x[1]*BA.x[0]+A.x[3]*BA.x[1],A.x[1]*BA.x[2]+A.x[3]*BA.x[3]);
     }
+
+    static Symmetric_Matrix Transpose_Times_With_Symmetric_Result(const Matrix<T,2>& A,const Matrix<T,2>& B)
+    {return Symmetric_Matrix(A.x[0]*B.x[0]+A.x[1]*B.x[1],A.x[2]*B.x[0]+A.x[3]*B.x[1],A.x[2]*B.x[2]+A.x[3]*B.x[3]);}
+
+    static Symmetric_Matrix Transpose_Times_With_Symmetric_Result(const Matrix<T,3,2>& A,const Matrix<T,3,2>& B)
+    {return Symmetric_Matrix(A.x[0]*B.x[0]+A.x[1]*B.x[1]+A.x[2]*B.x[2],A.x[3]*B.x[0]+A.x[4]*B.x[1]+A.x[5]*B.x[2],A.x[3]*B.x[3]+A.x[4]*B.x[4]+A.x[5]*B.x[5]);}
+
+    static Symmetric_Matrix Conjugate_With_Transpose(const Matrix<T,2>& A,const Diagonal_Matrix<T,2>& B)
+    {return Transpose_Times_With_Symmetric_Result(B*A,A);}
+
+    static Symmetric_Matrix Conjugate_With_Transpose(const Matrix<T,2>& A,const Symmetric_Matrix<T,2>& B)
+    {return Transpose_Times_With_Symmetric_Result(B*A,A);}
+
+    static Symmetric_Matrix Conjugate_With_Transpose(const Matrix<T,3,2>& A,const Symmetric_Matrix<T,3>& B)
+    {return Transpose_Times_With_Symmetric_Result(B*A,A);}
 };
 }
 #include <nova/Tools/Read_Write/Matrices/Read_Write_Symmetric_Matrix_2x2.h>

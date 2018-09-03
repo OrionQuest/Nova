@@ -27,6 +27,12 @@ class Diagonal_Matrix
         :_data(other._data)
     {}
 
+    template<class T2> explicit
+    Diagonal_Matrix(const Diagonal_Matrix<T2,d>& other)
+    {
+        for(int i=0;i<d;++i) _data[i]=(T)other(i);
+    }
+
     Diagonal_Matrix(const T_Storage& other)
         :_data(other)
     {}
@@ -103,6 +109,13 @@ class Diagonal_Matrix
     {
         Diagonal_Matrix ret;
         for(int i=0;i<d;++i) ret(i)=log(_data(i));
+        return ret;
+    }
+
+    Diagonal_Matrix Sqrt() const
+    {
+        Diagonal_Matrix ret;
+        for(int i=0;i<d;++i) ret(i)=std::sqrt(_data(i));
         return ret;
     }
 
