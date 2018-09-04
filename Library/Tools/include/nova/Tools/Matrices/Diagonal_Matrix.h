@@ -128,6 +128,14 @@ class Diagonal_Matrix
 };
 
 template<class T,int d>
+std::ostream& operator<<(std::ostream& output,const Diagonal_Matrix<T,d>& m)
+{
+    output<<m(0);
+    for(int i=1;i<d;++i) output<<" "<<m(i);
+    return output;
+}
+
+template<class T,int d>
 Diagonal_Matrix<T,d> operator*(const T& a,const Diagonal_Matrix<T,d>& other)
 {return Diagonal_Matrix<T,d>(other._data*a);}
 }

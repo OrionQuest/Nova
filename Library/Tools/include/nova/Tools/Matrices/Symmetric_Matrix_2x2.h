@@ -167,8 +167,9 @@ class Symmetric_Matrix<T,2>
         if(a>=0){eigenvalues(0)=a+m;eigenvalues(1)=eigenvalues(0)?k/eigenvalues(0):0;}
         else{eigenvalues(1)=a-m;eigenvalues(0)=eigenvalues(1)?k/eigenvalues(1):0;}
         Nova_Utilities::Exchange_Sort(eigenvalues(1),eigenvalues(0));
-        eigenvectors.Column(0)=(b>=0?TV({m+b,c}):TV({-c,b-m})).Normalized();
-        eigenvectors.Column(1)=eigenvectors.Column(0).Orthogonal_Vector();
+        TV column1=(b>=0?TV({m+b,c}):TV({-c,b-m})).Normalized();
+        TV column2=column1.Orthogonal_Vector();
+        eigenvectors=Matrix<T,2>(column1,column2);
     }
 
     Symmetric_Matrix Conjugate(const Matrix<T,2>& A,const Diagonal_Matrix<T,2>& B) const

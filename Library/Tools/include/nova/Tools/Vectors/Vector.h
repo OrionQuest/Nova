@@ -528,7 +528,8 @@ class Vector
     T Normalize()
     {
         T norm=Norm();
-        *this=this->operator*((T)1./norm);
+        if(norm) *this=this->operator*((T)1./norm);
+        else *this=Axis_Vector(0);
         return norm;
     }
 
