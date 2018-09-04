@@ -199,6 +199,13 @@ class Symmetric_Matrix<T,2>
     static Symmetric_Matrix Conjugate_With_Transpose(const Matrix<T,3,2>& A,const Symmetric_Matrix<T,3>& B)
     {return Transpose_Times_With_Symmetric_Result(B*A,A);}
 };
+
+template<class T>
+std::ostream& operator<<(std::ostream& output,const Symmetric_Matrix<T,2>& A)
+{
+    output<<"["<<A.x11<<" "<<A.x21<<" ; "<<A.x21<<" "<<A.x22<<"]";
+    return output;
+}
 }
 #include <nova/Tools/Read_Write/Matrices/Read_Write_Symmetric_Matrix_2x2.h>
 #endif

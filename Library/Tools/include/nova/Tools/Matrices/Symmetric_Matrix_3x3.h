@@ -295,5 +295,12 @@ class Symmetric_Matrix<T,3>
     static Symmetric_Matrix Conjugate(const Matrix<T,3,2>& A,const Symmetric_Matrix<T,2>& B)
     {return Times_Transpose_With_Symmetric_Result(A*B,A);}
 };
+
+template<class T>
+std::ostream& operator<<(std::ostream& output,const Symmetric_Matrix<T,3>& A)
+{
+    output<<"["<<A.x11<<" "<<A.x21<<" "<<A.x31<<" ; "<<A.x21<<" "<<A.x22<<" "<<A.x32<<" ; "<<A.x31<<" "<<A.x32<<" "<<A.x33<<"]";
+    return output;
+}
 }
 #endif

@@ -298,15 +298,15 @@ class Matrix<T,3>
 
         // compute singular values
         if(lambda(2)<(T)0.) lambda=lambda.Clamp_Min(0);
-        singular_values=singular_values.Sqrt();
+        singular_values=lambda.Sqrt();
         if(Determinant()<(T)0.) singular_values(2)=-singular_values(2);
 
         // compute singular vectors
-        TV column1=(*this*V.Column(1)).Normalized();
-        TV v1_orthogonal=U.Column(1).Unit_Orthogonal_Vector();
-        Matrix<T,3,2> other_v(v1_orthogonal,Cross_Product(U.Column(1),v1_orthogonal));
-        TV column2=other_v*(other_v.Transpose_Times(*this*V.Column(2))).Normalized();
-        TV column3=Cross_Product(U.Column(1),U.Column(2));
+        TV column1=(*this*V.Column(0)).Normalized();
+        TV v1_orthogonal=column1.Unit_Orthogonal_Vector();
+        Matrix<T,3,2> other_v(v1_orthogonal,Cross_Product(column1,v1_orthogonal));
+        TV column2=other_v*(other_v.Transpose_Times(*this*V.Column(1))).Normalized();
+        TV column3=Cross_Product(column1,column2);
         U=Matrix(column1,column2,column3);
     }
 
@@ -339,8 +339,7 @@ class Matrix<T,3>
 template<class T>
 std::ostream& operator<<(std::ostream& output,const Matrix<T,3>& m)
 {
-    output<<m.x[0];
-    for(int i=1;i<9;++i) output<<" "<<m.x[i];
+    output<<"["<<m.x[0]<<" "<<m.x[3]<<" "<<m.x[6]<<" ; "<<m.x[1]<<" "<<m.x[4]<<" "<<m.x[7]<<" ; "<<m.x[2]<<" "<<m.x[5]<<" "<<m.x[8]<<"]";
     return output;
 }
 
