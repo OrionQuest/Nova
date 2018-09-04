@@ -339,7 +339,7 @@ class Matrix<T,3>
 template<class T>
 std::ostream& operator<<(std::ostream& output,const Matrix<T,3>& m)
 {
-    output<<"["<<m.x[0]<<" "<<m.x[3]<<" "<<m.x[6]<<" ; "<<m.x[1]<<" "<<m.x[4]<<" "<<m.x[7]<<" ; "<<m.x[2]<<" "<<m.x[5]<<" "<<m.x[8]<<"]";
+    output<<"["<<m.x[0]<<" "<<m.x[3]<<" "<<m.x[6]<<"; "<<m.x[1]<<" "<<m.x[4]<<" "<<m.x[7]<<"; "<<m.x[2]<<" "<<m.x[5]<<" "<<m.x[8]<<"]";
     return output;
 }
 

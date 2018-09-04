@@ -254,7 +254,7 @@ class Matrix<T,2>
 
 template<class T>
 std::ostream& operator<<(std::ostream& output,const Matrix<T,2>& m)
-{output<<m.x[0]<<" "<<m.x[1]<<" "<<m.x[2]<<" "<<m.x[3];return output;}
+{output<<"["<<m.x[0]<<" "<<m.x[2]<<"; "<<m.x[1]<<" "<<m.x[3]<<"]";return output;}
 
 template<class T>
 inline Matrix<T,2> operator+(const T a,const Matrix<T,2>& A)

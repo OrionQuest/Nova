@@ -203,7 +203,7 @@ class Symmetric_Matrix<T,2>
 template<class T>
 std::ostream& operator<<(std::ostream& output,const Symmetric_Matrix<T,2>& A)
 {
-    output<<"["<<A.x11<<" "<<A.x21<<" ; "<<A.x21<<" "<<A.x22<<"]";
+    output<<"["<<A.x11<<" "<<A.x21<<"; "<<A.x21<<" "<<A.x22<<"]";
     return output;
 }
 }
