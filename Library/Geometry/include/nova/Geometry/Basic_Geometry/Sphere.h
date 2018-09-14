@@ -21,6 +21,9 @@ class Sphere
     Sphere(const TV& center_input,const T& radius_input)
         :center(center_input),radius(radius_input)
     {}
+
+    T Signed_Distance(const TV& X) const
+    {return (X-center).Norm()-radius;}
 };
 }
 #endif

@@ -6,6 +6,7 @@
 #ifndef __Box__
 #define __Box__
 
+#include <nova/Tools/Log/Debug_Utilities.h>
 #include <nova/Tools/Utilities/Range.h>
 
 namespace Nova{
@@ -17,6 +18,7 @@ class Box: public Range<T,d>
 
   public:
     using Base::min_corner;using Base::max_corner;
+    using Base::Center;using Base::Edge_Lengths;
 
     Box() {}
 
@@ -52,6 +54,15 @@ class Box: public Range<T,d>
         min_corner=box.min_corner;
         max_corner=box.max_corner;
         return *this;
+    }
+
+    T Signed_Distance(const TV& X) const
+    {
+        TV lengths=Edge_Lengths();
+        if(lengths.Contains(0)) FUNCTION_NOT_IMPLEMENTED();
+        TV phi=(X-Center()).Abs()-(T).5*lengths;
+        if(!phi.All_Less_Equal(TV())) return Componentwise_Max(phi,TV()).Norm();
+        return phi.Max();
     }
 
     void Build_From_Points(const TV& x0,const TV& x1,const TV& x2)
