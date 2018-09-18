@@ -1,3 +1,4 @@
+if(ENABLE_SPGRID_SUPPORT)
 # Target for Dynamics
 add_library(_nova_dynamics INTERFACE)
 
@@ -26,4 +27,4 @@ target_include_directories( _nova_dynamics INTERFACE
 #  )
 
 add_library(nova::dynamics ALIAS _nova_dynamics)
-
+endif()

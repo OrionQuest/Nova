@@ -1,3 +1,6 @@
+set(ENABLE_SPGRID_SUPPORT OFF CACHE BOOL "Enable building the SPGrid framework.")
+
+if(ENABLE_SPGRID_SUPPORT)
 # Target for SPGrid
 add_library( _nova_spgrid
   src/Core/SPGrid_Geometry.cpp
@@ -35,4 +38,4 @@ target_link_libraries( _nova_spgrid
 
 
 add_library( nova::spgrid ALIAS _nova_spgrid )
-
+endif()
