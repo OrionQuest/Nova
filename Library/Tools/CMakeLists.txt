@@ -11,6 +11,7 @@ add_library( _nova_tools
   src/Utilities/Driver.cpp
   src/Utilities/Example.cpp
   src/Utilities/File_Utilities.cpp
+  src/Utilities/Pthread_Queue.cpp
   src/Utilities/Timer.cpp
   src/Vectors/Vector_2D.cpp
   src/Vectors/Vector_3D.cpp
