@@ -31,7 +31,7 @@ to generate the ``Makefile``. Finally, run the following command: ::
 
     make -j 8
 
-Nova depends on several libraries such as `GLM <https://glm.g-truc.net/0.9.9/index.html>`_, `Eigen <http://eigen.tuxfamily.org/index.php?title=Main_Page>`_,
+Nova depends on several libraries such as `GLM <https://glm.g-truc.net/0.9.9/index.html>`_,
 `FreeType <https://www.freetype.org/>`_, `GLFW <http://www.glfw.org/>`_ (version ``3.0``), `GLEW <http://glew.sourceforge.net/>`_, `Boost <https://www.boost.org/>`_
 (in particular, ``filesystem``, ``program_options``, and ``regex``), `Assimp <http://www.assimp.org/>`_, etc. Most of these libraries can be directly installed from the
 package manager on Linux systems such as Ubuntu (version ``14.04`` or higher).
