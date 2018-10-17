@@ -43,6 +43,7 @@ class Triangulated_Surface: public Point_Cloud<T,3>,public Simplex_Mesh<3>
             for(size_t i=0;i<points.size();++i) *output<<"v "<<points[i][0]<<" "<<points[i][1]<<" "<<points[i][2]<<std::endl;
             for(size_t i=0;i<elements.size();++i) *output<<"f "<<elements[i][0]+1<<" "<<elements[i][1]+1<<" "<<elements[i][2]+1<<std::endl;
         }
+        delete output;
     }
 
 //######################################################################
