@@ -62,9 +62,24 @@ and can be downloaded using the following commands:</p>
 git clone https://github.com/OrionQuest/Nova_Examples.git
 </pre></div>
 </div>
+<p>Nova depends on several libraries such as <a class="reference external" href="https://glm.g-truc.net/0.9.9/index.html">GLM</a>,
+<a class="reference external" href="https://www.freetype.org/">FreeType</a>, <a class="reference external" href="http://www.glfw.org/">GLFW</a> (version <code class="docutils literal"><span class="pre">3.0</span></code>), <a class="reference external" href="http://glew.sourceforge.net/">GLEW</a>, <a class="reference external" href="https://www.boost.org/">Boost</a>
+(in particular, <code class="docutils literal"><span class="pre">filesystem</span></code>, <code class="docutils literal"><span class="pre">program_options</span></code>, and <code class="docutils literal"><span class="pre">regex</span></code>), <a class="reference external" href="http://www.assimp.org/">Assimp</a>, etc. Most of these libraries can be directly installed from the
+package manager on Linux systems such as Ubuntu (version <code class="docutils literal"><span class="pre">14.04</span></code> or higher).
+At the moment, the <code class="docutils literal"><span class="pre">cmake</span></code> files do not do a perfect job in finding all the missing libraries. We apologize for this slight inconvenience and will hopefully fix this in the near future.
+Run the following command to install all the dependencies:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install libboost1.58-dev libboost-program-options1.58-dev libboost-filesystem1.58-dev libboost-regex1.58-dev libglfw3-dev libglew-dev libglm-dev libassimp-dev libfreetype6-dev
+</pre></div>
+</div>
 <p>The build system uses <a class="reference external" href="https://cmake.org/">cmake</a> (version <code class="docutils literal"><span class="pre">3.0</span></code> or higher).
 We recommend the use of the graphical version <code class="docutils literal"><span class="pre">ccmake</span></code> for easy configuration
-of the environment variables. To compile, run the following commands in order:</p>
+of the environment variables. The best way to install the latest version of
+<code class="docutils literal"><span class="pre">cmake</span></code> and <code class="docutils literal"><span class="pre">ccmake</span></code> is to first run the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install libncurses5-dev
+</pre></div>
+</div>
+<p>and then install <a class="reference external" href="https://cmake.org/">cmake</a>. This will ensure that both
+<code class="docutils literal"><span class="pre">cmake</span></code> and <code class="docutils literal"><span class="pre">ccmake</span></code> are updated to the latest version. To compile Nova, run the following commands in order:</p>
 <div class="highlight-python"><div class="highlight"><pre>cd Nova
 mkdir build
 cd build
@@ -75,17 +90,12 @@ ccmake ..
 <code class="docutils literal"><span class="pre">ENABLE_ASSIMP_PLUGIN</span></code>, <code class="docutils literal"><span class="pre">ENABLE_FREETYPE_PLUGIN</span></code>, <code class="docutils literal"><span class="pre">ENABLE_GRID_PLUGIN</span></code>,
 <code class="docutils literal"><span class="pre">ENABLE_TEXTFILERENDERER_PLUGIN</span></code>. As our first example, we will simulate
 volumetric elastic objects, so turn on the corresponding project using the
-following two additional flags: <code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES</span></code>,
-<code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES_PLUGIN</span></code>. Press <code class="docutils literal"><span class="pre">c</span></code> to configure, and then <code class="docutils literal"><span class="pre">g</span></code>
+flag: <code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES</span></code>. Press <code class="docutils literal"><span class="pre">c</span></code> to configure, which will
+bring up the additional flag <code class="docutils literal"><span class="pre">ENABLE_EMBEDDED_DEFORMABLES_PLUGIN</span></code> used by the OpenGL viewer for visualizing the output data. Turn this flag on as well, press <code class="docutils literal"><span class="pre">c</span></code> to configure, and then <code class="docutils literal"><span class="pre">g</span></code>
 to generate the <code class="docutils literal"><span class="pre">Makefile</span></code>. Finally, run the following command:</p>
 <div class="highlight-python"><div class="highlight"><pre>make -j 8
 </pre></div>
 </div>
-<p>Nova depends on several libraries such as <a class="reference external" href="https://glm.g-truc.net/0.9.9/index.html">GLM</a>,
-<a class="reference external" href="https://www.freetype.org/">FreeType</a>, <a class="reference external" href="http://www.glfw.org/">GLFW</a> (version <code class="docutils literal"><span class="pre">3.0</span></code>), <a class="reference external" href="http://glew.sourceforge.net/">GLEW</a>, <a class="reference external" href="https://www.boost.org/">Boost</a>
-(in particular, <code class="docutils literal"><span class="pre">filesystem</span></code>, <code class="docutils literal"><span class="pre">program_options</span></code>, and <code class="docutils literal"><span class="pre">regex</span></code>), <a class="reference external" href="http://www.assimp.org/">Assimp</a>, etc. Most of these libraries can be directly installed from the
-package manager on Linux systems such as Ubuntu (version <code class="docutils literal"><span class="pre">14.04</span></code> or higher).
-At the moment, the <code class="docutils literal"><span class="pre">cmake</span></code> files do not do a perfect job in finding all the missing libraries. We apologize for this slight inconvenience and will hopefully fix this in the near future.</p>
 </div>
 
 
