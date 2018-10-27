@@ -35,28 +35,28 @@ class Grid_Hierarchy
 
     void Initialize_Allocators()
     {
-        const unsigned levels=Levels();
+        const int levels=Levels();
         allocators.resize(levels);
-        for(unsigned level=0;level<levels;++level){
+        for(int level=0;level<levels;++level){
             Vector<SPGrid::ucoord_t,d> current_size(sizes[level]);current_size+=2;          // size+2 to accommodate boundaries
             allocators[level]=new Allocator_type(current_size._data);}
     }
 
     void Initialize_Page_Maps()
     {
-        const unsigned levels=Levels();
+        const int levels=Levels();
         page_maps.resize(levels);
-        for(unsigned level=0;level<levels;++level) page_maps[level]=new Page_Map_type(*allocators[level]);
+        for(int level=0;level<levels;++level) page_maps[level]=new Page_Map_type(*allocators[level]);
     }
 
   public:
 
     Grid_Hierarchy() {}
 
-    Grid_Hierarchy(const Grid<T,d>& grid,const unsigned levels)
+    Grid_Hierarchy(const Grid<T,d>& grid,const int levels)
     {Initialize(grid.counts,grid.domain,levels);}
 
-    Grid_Hierarchy(const T_INDEX& counts,const Range<T,d>& domain,const unsigned levels)
+    Grid_Hierarchy(const T_INDEX& counts,const Range<T,d>& domain,const int levels)
     {Initialize(counts,domain,levels);}
 
     ~Grid_Hierarchy()
@@ -65,12 +65,12 @@ class Grid_Hierarchy
         for(auto p: page_maps) delete p;
     }
 
-    void Initialize(const T_INDEX& counts,const Range<T,d>& domain,const unsigned levels)
+    void Initialize(const T_INDEX& counts,const Range<T,d>& domain,const int levels)
     {
         T_INDEX cell_counts=counts;
         Index_type base_size=*reinterpret_cast<Index_type*>(&cell_counts);
         grids.resize(levels);sizes.resize(levels);
-        for(unsigned level=0;level<levels;++level){sizes[level]=base_size;
+        for(int level=0;level<levels;++level){sizes[level]=base_size;
             for(auto &s:base_size) s/=2;
             grids[level].Initialize(*reinterpret_cast<T_INDEX*>(&sizes[level]),domain);}
 
@@ -78,45 +78,45 @@ class Grid_Hierarchy
         Initialize_Page_Maps();
     }
 
-    unsigned Levels() const
+    int Levels() const
     {return sizes.size();}
 
-    const Grid<T,d>& Lattice(const unsigned level) const
+    const Grid<T,d>& Lattice(const int level) const
     {return grids[level];}
 
     // access to allocators
-    const Allocator_type& Allocator(const unsigned level) const
+    const Allocator_type& Allocator(const int level) const
     {return *allocators[level];}
 
-    Allocator_type& Allocator(const unsigned level)
+    Allocator_type& Allocator(const int level)
     {return *allocators[level];}
 
     // access to blocks (for optimized iteration)
-    std::pair<const uint64_t*,unsigned> Blocks(const unsigned level) const
+    std::pair<const uint64_t*,unsigned> Blocks(const int level) const
     {return page_maps[level]->Get_Blocks();}
 
     // access to page maps
-    const Page_Map_type& Page_Map(const unsigned level) const
+    const Page_Map_type& Page_Map(const int level) const
     {return *page_maps[level];}
 
-    Page_Map_type& Page_Map(const unsigned level)
+    Page_Map_type& Page_Map(const int level)
     {return *page_maps[level];}
 
     void Update_Block_Offsets()
     {
-        const unsigned levels=Levels();
-        for(unsigned level=0;level<levels;++level) page_maps[level]->Update_Block_Offsets();
+        const int levels=Levels();
+        for(int level=0;level<levels;++level) page_maps[level]->Update_Block_Offsets();
     }
 
     // access to sets (more often use blocks)
     template<class T_FIELD>
-    Set_type Set(const unsigned level,T_FIELD Struct_type::* field) const
+    Set_type Set(const int level,T_FIELD Struct_type::* field) const
     {return Set_type(*page_maps[level],allocators[level]->Get_Array(field));}
 
-    void Activate_Cell(const unsigned level,const unsigned long offset,unsigned long mask)
+    void Activate_Cell(const int level,const unsigned long offset,unsigned long mask)
     {Set(level,&Struct_type::flags).Mask(offset,mask);}
 
-    void Activate_Cell(const unsigned level,const T_INDEX& index,unsigned long mask)
+    void Activate_Cell(const int level,const T_INDEX& index,unsigned long mask)
     {Set(level,&Struct_type::flags).Mask(*reinterpret_cast<const Index_type*>(&index),mask);}
 
     void Write_Hierarchy(const std::string& output_directory,const int frame)
@@ -131,10 +131,10 @@ class Grid_Hierarchy
     {
         Read_Metadata(input_directory);
 
-        const unsigned levels=Levels();
+        const int levels=Levels();
         std::istream* input1=File_Utilities::Safe_Open_Input(input_directory+"/"+std::to_string(frame)+"/flags");
         std::istream* input2=File_Utilities::Safe_Open_Input(input_directory+"/"+std::to_string(frame)+"/block_offsets");
-        for(unsigned level=0;level<levels;++level){unsigned number_of_blocks=0;
+        for(int level=0;level<levels;++level){unsigned number_of_blocks=0;
             auto block_size=Allocator(level).Block_Size();
             Read_Write<unsigned>::Read(*input2,number_of_blocks);
             for(unsigned block=0;block < number_of_blocks;++block){T_INDEX base_index;
@@ -154,7 +154,7 @@ class Grid_Hierarchy
     void Write_Metadata(const std::string& output_directory)
     {
         std::ostream* output=(d==3)?File_Utilities::Safe_Open_Output(output_directory+"/common/hierarchy.struct3d"):File_Utilities::Safe_Open_Output(output_directory+"/common/hierarchy.struct2d");
-        Read_Write<unsigned>::Write(*output,Levels());
+        Read_Write<int>::Write(*output,Levels());
         Read_Write<unsigned>::Write(*output,Flag_array_mask::elements_per_block);
         Index_type block_size=Allocator(0).Block_Size();
         for(int v=0;v<d;++v) Read_Write<unsigned>::Write(*output,block_size[v]);
@@ -164,7 +164,7 @@ class Grid_Hierarchy
     void Read_Metadata(const std::string& input_directory)
     {
         std::istream* input=(d==3)?File_Utilities::Safe_Open_Input(input_directory+"/common/hierarchy.struct3d"):File_Utilities::Safe_Open_Input(input_directory+"/common/hierarchy.struct2d");
-        unsigned levels;Read_Write<unsigned>::Read(*input,levels);
+        int levels;Read_Write<int>::Read(*input,levels);
         unsigned elements_per_block;Read_Write<unsigned>::Read(*input,elements_per_block);
         Index_type block_size;
         for(int v=0;v<d;++v) Read_Write<unsigned>::Read(*input,block_size[v]);
@@ -178,7 +178,7 @@ class Grid_Hierarchy
     void Write_Channel(const std::string& filename,T_FIELD Struct_type::* channel)
     {
         std::ostream* output=File_Utilities::Safe_Open_Output(filename);
-        for(unsigned level=0;level<Levels();++level){
+        for(int level=0;level<Levels();++level){
             auto data=Allocator(level).Get_Const_Array(channel);
             for(Block_Iterator iterator(Page_Map(level).Get_Blocks());iterator.Valid();iterator.Next())
                 Read_Write<T_FIELD>::Write(*output,data(iterator.Offset()));}
@@ -189,7 +189,7 @@ class Grid_Hierarchy
     void Read_Channel(const std::string& filename,T_FIELD Struct_type::* channel)
     {
         std::istream* input=File_Utilities::Safe_Open_Input(filename);
-        for(unsigned level=0;level<Levels();++level){
+        for(int level=0;level<Levels();++level){
             auto data=Allocator(level).Get_Array(channel);
             for(Block_Iterator iterator(Page_Map(level).Get_Blocks());iterator.Valid();iterator.Next())
                 Read_Write<T_FIELD>::Read(*input,data(iterator.Offset()));}
@@ -199,7 +199,7 @@ class Grid_Hierarchy
     void Write_Block_Offsets(const std::string& filename)
     {
         std::ostream* output=File_Utilities::Safe_Open_Output(filename);
-        for(unsigned level=0;level<Levels();++level){
+        for(int level=0;level<Levels();++level){
             auto blocks=Page_Map(level).Get_Blocks();
             Read_Write<int>::Write(*output,blocks.second);
             for(unsigned block=0;block<blocks.second;++block){
