@@ -13,6 +13,7 @@
 
 namespace Nova{
 
+template<class T> class Cylinder;
 template<class T,int d> class Sphere;
 
 template<class T>
@@ -49,6 +50,8 @@ class Triangulated_Surface: public Point_Cloud<T,3>,public Simplex_Mesh<3>
 //######################################################################
     void Initialize_Sphere_Tessellation(const Sphere<T,d>& sphere,const int levels=4);
     void Initialize_Ground_Plane(const T height=(T)0.);
+    void Initialize_Cylinder_Tessellation(const Cylinder<T>& cylinder,const int resolution_height=4,
+                                          const int resolution_radius=16,const bool create_caps=false);
 //######################################################################
 };
 }

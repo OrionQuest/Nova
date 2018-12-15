@@ -1,8 +1,10 @@
 //!#####################################################################
 //! \file Triangulated_Surface.cpp
 //!#####################################################################
+#include <nova/Geometry/Basic_Geometry/Cylinder.h>
 #include <nova/Geometry/Basic_Geometry/Sphere.h>
 #include <nova/Geometry/Topology_Based_Geometry/Triangulated_Surface.h>
+#include <nova/Tools/Utilities/Constants.h>
 using namespace Nova;
 //######################################################################
 // Initialize_Sphere_Tessellation
@@ -63,6 +65,27 @@ Initialize_Ground_Plane(const T height)
     Add_Element(INDEX({0,1,3}));
     Add_Element(INDEX({1,2,3}));
     number_of_nodes=points.size();
+}
+//######################################################################
+// Initialize_Cylinder_Tessellation
+//######################################################################
+template<class T> void Nova::Triangulated_Surface<T>::
+Initialize_Cylinder_Tessellation(const Cylinder<T>& cylinder,const int m,const int n,const bool create_caps)
+{
+    points.Clear();elements.Clear();
+
+    T dtheta=(T)two_pi/n,dlength=cylinder.height/(m-1);
+    for(int i=1;i<=m;++i) for(int j=1;j<=n;++j){T theta=(j-1)*dtheta;
+        Add_Vertex(cylinder.plane1.x1+TV({dlength*(i-1),cylinder.radius*(T)sin(theta),cylinder.radius*(T)cos(theta)}));}
+    if(create_caps){Add_Vertex(cylinder.plane1.x1+TV());Add_Vertex(cylinder.plane1.x1+TV({cylinder.height,0,0}));}
+
+    for(int j=1;j<=n;++j){int j_1=j==n?1:j+1;
+        for(int i=1;i<=m-1;++i){
+            Add_Element(INDEX({j+(i-1)*n-1,j+i*n-1,j_1+i*n-1}));
+            Add_Element(INDEX({j+(i-1)*n-1,j_1+i*n-1,j_1+(i-1)*n-1}));}
+        if(create_caps){
+            Add_Element(INDEX({m*n,j-1,j_1-1}));
+            Add_Element(INDEX({m*n+1,j_1+(m-1)*n-1,j+(m-1)*n-1}));}}
 }
 //######################################################################
 template class Nova::Triangulated_Surface<float>;
