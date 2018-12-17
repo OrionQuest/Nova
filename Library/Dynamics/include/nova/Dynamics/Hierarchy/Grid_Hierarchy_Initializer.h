@@ -33,7 +33,7 @@ class Grid_Hierarchy_Initializer
 
     static void Flag_Ghost_Cells(Hierarchy& hierarchy)
     {
-        Nova::Log::Scope scope("Grid_Hierarchy_Initializer::Flag_Ghost_Cells");
+        Log::Scope scope("Grid_Hierarchy_Initializer::Flag_Ghost_Cells");
 
         uint64_t face_neighbor_offsets[number_of_faces_per_cell];
         Topology_Helper::Face_Neighbor_Offsets(face_neighbor_offsets);
