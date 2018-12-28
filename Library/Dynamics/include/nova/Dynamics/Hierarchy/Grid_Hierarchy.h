@@ -19,14 +19,17 @@ namespace Nova{
 template<class Struct_type,class T,int d>
 class Grid_Hierarchy
 {
-    using T_INDEX               = Vector<int,d>;
-    using Page_Map_type         = SPGrid::SPGrid_Page_Map;
-    using Index_type            = std::array<SPGrid::ucoord_t,d>;
-    using Allocator_type        = SPGrid::SPGrid_Allocator<Struct_type,d>;
-    using Flag_array_mask       = typename Allocator_type::template Array_mask<unsigned>;
-    using Flag_array_type       = typename Allocator_type::template Array_type<unsigned>;
-    using Block_Iterator        = SPGrid::SPGrid_Block_Iterator<Flag_array_mask>;
-    using Set_type              = SPGrid::SPGrid_Set<Flag_array_type>;
+    using T_INDEX                   = Vector<int,d>;
+    using Page_Map_type             = SPGrid::SPGrid_Page_Map;
+    using Index_type                = std::array<SPGrid::ucoord_t,d>;
+    using Allocator_type            = SPGrid::SPGrid_Allocator<Struct_type,d>;
+    using Flag_array_mask           = typename Allocator_type::template Array_mask<unsigned>;
+    using Flag_array_type           = typename Allocator_type::template Array_type<unsigned>;
+    using Const_flag_array_type     = typename Allocator_type::template Array_type<const unsigned>;
+    using Data_array_type           = typename Allocator_type::template Array_type<T>;
+    using Const_data_array_type     = typename Allocator_type::template Array_type<const T>;
+    using Block_Iterator            = SPGrid::SPGrid_Block_Iterator<Flag_array_mask>;
+    using Set_type                  = SPGrid::SPGrid_Set<Flag_array_type>;
 
     Array<Grid<T,d>> grids;
     Array<Index_type> sizes;
@@ -101,6 +104,18 @@ class Grid_Hierarchy
 
     Page_Map_type& Page_Map(const int level)
     {return *page_maps[level];}
+
+    Data_array_type Channel(const int level,T Struct_type::* field)
+    {return allocators[level]->Get_Array(field);}
+
+    Const_data_array_type Channel(const int level,const T Struct_type::* field) const
+    {return allocators[level]->Get_Const_Array(field);}
+
+    Flag_array_type Channel(const int level,unsigned Struct_type::* field)
+    {return allocators[level]->Get_Array(field);}
+
+    Const_flag_array_type Channel(const int level,const unsigned Struct_type::* field) const
+    {return allocators[level]->Get_Const_Array(field);}
 
     void Update_Block_Offsets()
     {

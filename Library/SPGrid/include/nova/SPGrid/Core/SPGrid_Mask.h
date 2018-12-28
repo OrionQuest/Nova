@@ -165,6 +165,28 @@ class SPGrid_Mask<log2_struct,log2_field,3,log2_page>: public SPGrid_Mask_base<l
 #endif
     }
 
+    template<class T_mask_other>
+    inline static uint64_t Translate_Linear_Offset(const uint64_t linear_offset_other)
+    {
+        if(T_mask_other::data_bits>data_bits){
+            enum { page_spread_mask = LinearOffset<0x1fffffu<<T_mask_other::block_xbits,
+                                                   0x1fffffu<<T_mask_other::block_ybits,
+                                                   0x3fffffu<<T_mask_other::block_zbits>::value,
+                   element_spread_mask = ((1<<log2_field)-1) |
+                     ((1<<T_mask_other::block_zbits)-1)<<log2_field |
+                     ((1<<T_mask_other::block_ybits)-1)<<(log2_field+block_zbits) |
+                     ((1<<T_mask_other::block_xbits)-1)<<(log2_field+block_zbits+block_ybits) };
+#ifdef HASWELL
+            return Bit_Spread(linear_offset_other>>12,page_spread_mask) |
+                Bit_Spread(linear_offset_other&0xfff,element_spread_mask);
+#else
+            return Bit_Spread<page_spread_mask>(linear_offset_other>>12) |
+                   Bit_Spread<element_spread_mask>(linear_offset_other&0xfff);
+#endif
+        }
+        else { int i,j,k; T_mask_other::LinearToCoord(linear_offset_other,&i,&j,&k); return Linear_Offset(i,j,k); }
+    }
+
     inline static void LinearToCoord(uint64_t linear_offset, int* i, int* j, int* k)
     {
         *i = Bit_Pack(linear_offset,xmask);
@@ -423,6 +445,14 @@ class SPGrid_Mask<log2_struct,log2_field,2>: public SPGrid_Mask_base<log2_struct
 #else
         return Bit_Spread<xmask>(coord[0])|Bit_Spread<ymask>(coord[1]);
 #endif
+    }
+
+    template<class T_mask_other>
+    inline static uint64_t Translate_Linear_Offset(const uint64_t linear_offset_other)
+    {
+        int i,j;
+        T_mask_other::LinearToCoord(linear_offset_other,&i,&j);
+        return Linear_Offset(i,j);
     }
 
     inline static void LinearToCoord(uint64_t linear_offset, int* i, int* j)
