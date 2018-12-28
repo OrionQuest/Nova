@@ -22,6 +22,7 @@ class Grid_Hierarchy
     using T_INDEX                   = Vector<int,d>;
     using Page_Map_type             = SPGrid::SPGrid_Page_Map;
     using Index_type                = std::array<SPGrid::ucoord_t,d>;
+    using Flags_type                = typename Struct_type::Flags_type;
     using Allocator_type            = SPGrid::SPGrid_Allocator<Struct_type,d>;
     using Flag_array_mask           = typename Allocator_type::template Array_mask<unsigned>;
     using Flag_array_type           = typename Allocator_type::template Array_type<unsigned>;
@@ -35,6 +36,7 @@ class Grid_Hierarchy
     Array<Index_type> sizes;
     Array<Page_Map_type*> page_maps;
     Array<Allocator_type*> allocators;
+    Array<Array<uint64_t>> boundary_blocks;
 
     void Initialize_Allocators()
     {
@@ -121,6 +123,18 @@ class Grid_Hierarchy
     {
         const int levels=Levels();
         for(int level=0;level<levels;++level) page_maps[level]->Update_Block_Offsets();
+    }
+
+    void Initialize_Boundary_Blocks(const unsigned boundary_mask)
+    {
+        const int levels=Levels();
+        boundary_blocks.resize(levels);
+        for(int level=0;level<levels;++level) boundary_blocks(level).resize(0);
+        for(int level=0;level<levels;++level){auto flags=allocators[level]->Get_Const_Array(&Struct_type::flags);
+            for(Block_Iterator iterator(Blocks(level));iterator.Valid();iterator.Next_Block()){
+                uint64_t block_offset=iterator.Offset(),offset=block_offset;
+                for(int e=0;e<Flag_array_mask::elements_per_block;++e,offset+=sizeof(Flags_type))
+                    if(flags(offset)&boundary_mask){boundary_blocks(level).Append(block_offset);break;}}}
     }
 
     // access to sets (more often use blocks)

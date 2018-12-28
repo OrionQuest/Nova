@@ -168,7 +168,7 @@ class SPGrid_Mask<log2_struct,log2_field,3,log2_page>: public SPGrid_Mask_base<l
     template<class T_mask_other>
     inline static uint64_t Translate_Linear_Offset(const uint64_t linear_offset_other)
     {
-        if(T_mask_other::data_bits>data_bits){
+        if((int)T_mask_other::data_bits>(int)data_bits){
             enum { page_spread_mask = LinearOffset<0x1fffffu<<T_mask_other::block_xbits,
                                                    0x1fffffu<<T_mask_other::block_ybits,
                                                    0x3fffffu<<T_mask_other::block_zbits>::value,
@@ -180,8 +180,8 @@ class SPGrid_Mask<log2_struct,log2_field,3,log2_page>: public SPGrid_Mask_base<l
             return Bit_Spread(linear_offset_other>>12,page_spread_mask) |
                 Bit_Spread(linear_offset_other&0xfff,element_spread_mask);
 #else
-            return Bit_Spread<page_spread_mask>(linear_offset_other>>12) |
-                   Bit_Spread<element_spread_mask>(linear_offset_other&0xfff);
+            return Bit_Spread<page_spread_mask>(ucoord_t(linear_offset_other>>12)) |
+                   Bit_Spread<element_spread_mask>(ucoord_t(linear_offset_other&0xfff));
 #endif
         }
         else { int i,j,k; T_mask_other::LinearToCoord(linear_offset_other,&i,&j,&k); return Linear_Offset(i,j,k); }
