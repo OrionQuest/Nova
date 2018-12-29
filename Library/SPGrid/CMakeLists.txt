@@ -26,9 +26,9 @@ set(spgrid_use_haswell FALSE CACHE BOOL "use haswell-enabled bit-interleaving ha
 
 if(spgrid_use_haswell)
   if("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
-    target_compile_options( _nova_spgrid PRIVATE -mbmi2)
+    target_compile_options( _nova_spgrid PUBLIC -mbmi2)
   endif()
-  target_compile_definitions( _nova_spgrid PRIVATE HASWELL=1)
+  target_compile_definitions( _nova_spgrid PUBLIC HASWELL=1)
 endif()
 
 target_link_libraries( _nova_spgrid
