@@ -100,6 +100,10 @@ class Grid_Hierarchy
     std::pair<const uint64_t*,unsigned> Blocks(const int level) const
     {return page_maps[level]->Get_Blocks();}
 
+    // access to boundary blocks (for optimized iteration)
+    std::pair<const uint64_t*,unsigned> Boundary_Blocks(const int level) const
+    {return std::pair<const uint64_t*,unsigned>(&(boundary_blocks(level)(0)),boundary_blocks(level).size());}
+
     // access to page maps
     const Page_Map_type& Page_Map(const int level) const
     {return *page_maps[level];}
