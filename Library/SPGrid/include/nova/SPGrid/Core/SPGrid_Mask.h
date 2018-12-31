@@ -177,8 +177,8 @@ class SPGrid_Mask<log2_struct,log2_field,3,log2_page>: public SPGrid_Mask_base<l
                      ((1<<T_mask_other::block_ybits)-1)<<(log2_field+block_zbits) |
                      ((1<<T_mask_other::block_xbits)-1)<<(log2_field+block_zbits+block_ybits) };
 #ifdef HASWELL
-            return Bit_Spread(linear_offset_other>>12,page_spread_mask) |
-                Bit_Spread(linear_offset_other&0xfff,element_spread_mask);
+            return Bit_Spread(ucoord_t(linear_offset_other>>12),page_spread_mask) |
+                Bit_Spread(ucoord_t(linear_offset_other&0xfff),element_spread_mask);
 #else
             return Bit_Spread<page_spread_mask>(ucoord_t(linear_offset_other>>12)) |
                    Bit_Spread<element_spread_mask>(ucoord_t(linear_offset_other&0xfff));
