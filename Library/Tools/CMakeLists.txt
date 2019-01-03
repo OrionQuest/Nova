@@ -1,6 +1,8 @@
 # Target for Tools
 add_library( _nova_tools
   src/Grids/Grid.cpp
+  src/Grids/Grid_Iterator_Cell.cpp
+  src/Grids/Grid_Iterator_Face.cpp
   src/Krylov_Solvers/Conjugate_Gradient.cpp
   src/Krylov_Solvers/Krylov_System_Base.cpp
   src/Log/Debug_Utilities.cpp
