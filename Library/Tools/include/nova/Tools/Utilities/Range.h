@@ -64,7 +64,7 @@ class Range
     }
 
     T Size() const
-    {return Edge_Lengths().Product();}
+    {return (Edge_Lengths()+1).Product();}
 
     Range<T,d>& operator=(const Range<T,d>& rhs)
     {

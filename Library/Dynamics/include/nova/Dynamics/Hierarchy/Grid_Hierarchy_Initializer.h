@@ -11,6 +11,7 @@
 #include <nova/Dynamics/Utilities/SPGrid_Flags.h>
 #include <nova/SPGrid/Tools/Parity_Helper.h>
 #include <nova/SPGrid/Tools/SPGrid_Set_Iterator.h>
+#include <nova/Tools/Arrays/Array_ND.h>
 #include <nova/Tools/Log/Log.h>
 #include <nova/Tools/Utilities/Range_Iterator.h>
 
@@ -18,6 +19,7 @@ namespace Nova{
 template<class Struct_type,class T,int d>
 class Grid_Hierarchy_Initializer
 {
+    using T_INDEX                   = Vector<int,d>;
     using Hierarchy                 = Grid_Hierarchy<Struct_type,T,d>;
     using Allocator_type            = SPGrid::SPGrid_Allocator<Struct_type,d>;
     using Flag_array_mask           = typename Allocator_type::template Array_mask<unsigned>;
@@ -69,6 +71,56 @@ class Grid_Hierarchy_Initializer
 
                         hierarchy.Activate_Cell(current_level+1,parent_offset,mask);
                         current_offset=parent_offset;}}}
+    }
+
+    static void Flag_Valid_Faces(Hierarchy& hierarchy)
+    {
+        Log::Scope scope("Grid_Hierarchy_Initializer::Flag_Valid_Faces");
+
+        int child=0;
+        Array_ND<uint64_t,d> ghost_child_masks(Range<int,d>::Unit_Box());
+        for(Range_Iterator<d> iterator(Range<int,d>::Unit_Box());iterator.Valid();iterator.Next(),++child){const T_INDEX& index=iterator.Index();
+            if(d==3) ghost_child_masks(index)=Ghost_Child_000<<child;
+            else ghost_child_masks(index)=Ghost_Child_000<<(2*child);}
+
+        uint64_t face_neighbor_offsets[number_of_faces_per_cell],face_shifts[number_of_faces_per_cell],face_ghost_masks[number_of_faces_per_cell];
+        Topology_Helper::Face_Neighbor_Offsets(face_neighbor_offsets);
+        Topology_Helper::Face_Shift_Offsets(face_shifts);
+        const int levels=hierarchy.Levels();
+
+        for(int axis=0,face_number=0;axis<d;++axis) for(int axis_shift=0;axis_shift<=1;++axis_shift){face_ghost_masks[face_number]=0;
+            for(Range_Iterator<d-1> iterator(Range<int,d-1>::Unit_Box());iterator.Valid();iterator.Next()){
+                const T_INDEX index=T_INDEX(1)-iterator.Index().Insert(axis_shift,axis);
+                face_ghost_masks[face_number]|=ghost_child_masks(index);}
+            ++face_number;}
+
+        for(int level=0;level<levels;++level){auto flags_set=hierarchy.template Set<unsigned>(level,&Struct_type::flags);
+            for(Set_Iterator iterator(flags_set);iterator.Valid();iterator.Next()) if(iterator.Data()&Cell_Type_Interior)
+                for(int axis=0,face_number=0;axis<d;++axis) for(int axis_shift=0;axis_shift<=1;++axis_shift){
+                    const uint64_t face_offset=Flag_array_mask::Packed_Add(iterator.Offset(),face_shifts[face_number]);
+                    const uint64_t neighbor_offset=Flag_array_mask::Packed_Add(iterator.Offset(),face_neighbor_offsets[face_number]);
+                    if(!((iterator.Data()&face_ghost_masks[face_number]) == face_ghost_masks[face_number]))
+                        hierarchy.Activate_Cell(level,face_offset,Topology_Helper::Face_Valid_Mask(axis));
+                    else if(hierarchy.template Set<unsigned>(level,&Struct_type::flags).Is_Set(neighbor_offset,Cell_Type_Dirichlet|Cell_Type_Interior|Cell_Type_Ghost))
+                        hierarchy.Activate_Cell(level,face_offset,Topology_Helper::Face_Valid_Mask(axis));
+                    ++face_number;}}
+    }
+
+    static void Flag_Active_Faces(Hierarchy& hierarchy)
+    {
+        Log::Scope scope("Grid_Hierarchy_Initializer::Flag_Active_Faces");
+
+        const int levels=hierarchy.Levels();
+        Vector<uint64_t,d> left_cell_offsets;
+        for(int axis=0;axis<d;++axis) left_cell_offsets(axis)=Topology_Helper::Negative_Axis_Vector_Offset(axis);
+
+        for(int level=0;level<levels;++level){auto flags_set=hierarchy.template Set<unsigned>(level,&Struct_type::flags);
+            for(int axis=0;axis<d;++axis){unsigned face_valid_mask=Topology_Helper::Face_Valid_Mask(axis);
+                for(Set_Iterator iterator(flags_set);iterator.Valid();iterator.Next()) if(iterator.Data()&face_valid_mask){
+                    uint64_t left_cell_offset=Flag_array_mask::Packed_Add(iterator.Offset(),left_cell_offsets(axis));
+                    bool left_cell_not_exterior=(hierarchy.template Set<unsigned>(level,&Struct_type::flags).Is_Set(left_cell_offset,Cell_Type_Interior|Cell_Type_Dirichlet|Cell_Type_Ghost));
+                    bool right_cell_not_exterior=(hierarchy.template Set<unsigned>(level,&Struct_type::flags).Is_Set(iterator.Offset(),Cell_Type_Interior|Cell_Type_Dirichlet|Cell_Type_Ghost));
+                    if(left_cell_not_exterior && right_cell_not_exterior) iterator.Data()|=Topology_Helper::Face_Active_Mask(axis);}}}
     }
 };
 }
