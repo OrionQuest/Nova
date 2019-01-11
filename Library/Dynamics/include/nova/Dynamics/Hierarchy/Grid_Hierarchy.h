@@ -10,8 +10,10 @@
 #include <nova/SPGrid/Core/SPGrid_Page_Map.h>
 #include <nova/SPGrid/Core/SPGrid_Set.h>
 #include <nova/SPGrid/Tools/SPGrid_Block_Iterator.h>
+#include <nova/SPGrid/Tools/SPGrid_Partitioning_Helper.h>
 #include <nova/Tools/Arrays/Array.h>
 #include <nova/Tools/Grids/Grid.h>
+#include <nova/Tools/Log/Log.h>
 #include <nova/Tools/Utilities/File_Utilities.h>
 #include <nova/Tools/Utilities/Range_Iterator.h>
 
@@ -36,7 +38,8 @@ class Grid_Hierarchy
     Array<Index_type> sizes;
     Array<Page_Map_type*> page_maps;
     Array<Allocator_type*> allocators;
-    Array<Array<uint64_t>> boundary_blocks;
+    Array<Array<uint64_t>> boundary_blocks,copy_of_blocks;
+    Array<Array<std::pair<const uint64_t*,unsigned>>> red_blocks,black_blocks;
 
     void Initialize_Allocators()
     {
@@ -139,6 +142,34 @@ class Grid_Hierarchy
                 uint64_t block_offset=iterator.Offset(),offset=block_offset;
                 for(int e=0;e<Flag_array_mask::elements_per_block;++e,offset+=sizeof(Flags_type))
                     if(flags(offset)&boundary_mask){boundary_blocks(level).Append(block_offset);break;}}}
+    }
+
+    void Initialize_Red_Black_Partition(const int number_of_partitions)
+    {
+        const int levels=Levels();
+
+        // copy over blocks
+        copy_of_blocks.resize(levels);
+        for(int level=0;level<levels;++level){
+            copy_of_blocks(level).resize(Blocks(level).second);
+            for(unsigned i=0;i<copy_of_blocks(level).size();i++)
+                copy_of_blocks(level)[i]=(Blocks(level).first)[i];}
+
+        // set up read black partition
+        red_blocks.resize(levels);
+        black_blocks.resize(levels);
+        for(int level=0;level<levels;++level){
+            SPGrid::Partitioning_Helper<Struct_type,d> partitioning_helper(Allocator(level),Set<unsigned>(level,&Struct_type::flags),copy_of_blocks(level));
+            partitioning_helper.Generate_Red_Black_Partition(number_of_partitions,red_blocks(level),black_blocks(level));}
+
+        for(int level=0;level<levels;++level){
+            Log::cout<<"Level: "<<level<<std::endl;
+            Log::cout<<"    Red Blocks:"<<std::endl;
+            for(unsigned i=0;i<red_blocks(level).size();++i)
+                Log::cout<<"        # Blocks : "<<red_blocks(level)[i].second<<std::endl;
+            Log::cout<<"    Black Blocks:"<<std::endl;
+            for(unsigned i=0;i<black_blocks(level).size();++i)
+                Log::cout<<"        # Blocks : "<<black_blocks(level)[i].second<<std::endl;}
     }
 
     // access to sets (more often use blocks)

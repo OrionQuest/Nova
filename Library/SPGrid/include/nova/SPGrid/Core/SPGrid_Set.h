@@ -43,7 +43,7 @@ class SPGrid_Set
         Mask(linear_offset,mask);
     }
 
-    bool Is_Set(const uint64_t linear_offset,const T mask)
+    bool Is_Set(const uint64_t linear_offset,const T mask) const
     {
         if(linear_offset<max_linear_offset && pagemap.Test_Page(linear_offset))
         {
@@ -53,7 +53,7 @@ class SPGrid_Set
         return false;
     }
 
-    bool Is_Set(const std::array<ucoord_t,d>& coord,const T mask)
+    bool Is_Set(const std::array<ucoord_t,d>& coord,const T mask) const
     {
         auto linear_offset=T_ARRAY::MASK::Linear_Offset(coord);
         return Is_Set(linear_offset,mask);
