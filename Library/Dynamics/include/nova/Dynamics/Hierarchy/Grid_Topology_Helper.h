@@ -67,6 +67,28 @@ class Negative_Axis_Vector_Offset_Helper<SPGrid::SPGrid_Mask<log2_struct,log2_fi
 };
 }
 
+namespace{
+template<class T_MASK> struct Shadow_Grid_Stencil_Offsets_Helper;        
+template<int log2_struct,int log2_field>
+struct Shadow_Grid_Stencil_Offsets_Helper<SPGrid::SPGrid_Mask<log2_struct,log2_field,2> >
+{
+    enum{d=2};
+    typedef SPGrid::SPGrid_Mask<log2_struct,log2_field,d> T_MASK;
+    enum{og_xsize = (1u << T_MASK::block_xbits)+2,og_ysize = (1u << T_MASK::block_ybits)+2};
+    enum{x_shift=og_ysize,y_shift=1};
+    static int Offset(std::array<int,d> vector){return x_shift*vector[0]+y_shift*vector[1];}
+};
+template<int log2_struct,int log2_field>
+struct Shadow_Grid_Stencil_Offsets_Helper<SPGrid::SPGrid_Mask<log2_struct,log2_field,3> >
+{
+    enum{d=3};
+    typedef SPGrid::SPGrid_Mask<log2_struct,log2_field,d> T_MASK;
+    enum{og_xsize = (1u << T_MASK::block_xbits)+2,og_ysize = (1u << T_MASK::block_ybits)+2,og_zsize = (1u << T_MASK::block_zbits)+2};
+    enum{x_shift=og_ysize*og_zsize,y_shift=og_zsize,z_shift=1};
+    static int Offset(std::array<int,d> vector){return x_shift*vector[0]+y_shift*vector[1]+z_shift*vector[2];}
+};
+}
+
 template<class T_MASK>
 class Grid_Topology_Helper
 {
@@ -92,6 +114,23 @@ class Grid_Topology_Helper
         int node=0;
         for(Range_Iterator<d> iterator(Range<int,d>(T_INDEX(),T_INDEX(1)));iterator.Valid();iterator.Next())
             nodes_of_cell_offsets[node++]=T_MASK::Linear_Offset(iterator.Index()._data);
+    }
+
+    static void Nodes_Of_Face_Shadow_Grid_Offsets(int nodes_of_face_offsets[number_of_nodes_per_face],int axis)
+    {
+        assert(axis>=0 && axis<d);
+        int node=0;
+        for(Range_Iterator<d> iterator(Range<int,d>(T_INDEX(),T_INDEX(1)-T_INDEX::Axis_Vector(axis)));iterator.Valid();iterator.Next()){
+            const T_INDEX& index=iterator.Index();
+            nodes_of_face_offsets[node++]=Shadow_Grid_Stencil_Offsets_Helper<T_MASK>::Offset(index._data);}
+    }
+
+    static void Nodes_Of_Cell_Shadow_Grid_Offsets(int nodes_of_cell_offsets[number_of_nodes_per_cell])
+    {
+        int node=0;
+        for(Range_Iterator<d> iterator(Range<int,d>::Unit_Box());iterator.Valid();iterator.Next()){
+            const T_INDEX& index=iterator.Index();
+            nodes_of_cell_offsets[node++]=Shadow_Grid_Stencil_Offsets_Helper<T_MASK>::Offset(index._data);}
     }
 
     static void Face_Neighbor_Offsets(uint64_t face_neighbor_offsets[number_of_faces_per_cell])

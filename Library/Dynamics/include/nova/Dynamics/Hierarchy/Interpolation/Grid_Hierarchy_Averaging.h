@@ -39,8 +39,8 @@ class Grid_Hierarchy_Averaging
     {
         Log::Scope scope("Grid_Hierarchy_Averaging::Average_Cell_Density_To_Nodes");
 
-        uint64_t nodes_of_cell_offsets[nodes_per_cell];
-        Topology_Helper::Nodes_Of_Cell_Offsets(nodes_of_cell_offsets);
+        int nodes_of_cell_offsets[nodes_per_cell];
+        Topology_Helper::Nodes_Of_Cell_Shadow_Grid_Offsets(nodes_of_cell_offsets);
         const int levels=hierarchy.Levels();
 
         // clear nodal values and weights, perform in-level averaging
@@ -81,10 +81,10 @@ class Grid_Hierarchy_Averaging
     {
         Log::Scope scope("Grid_Hierarchy_Averaging::Average_Face_Velocities_To_Nodes");
 
-        uint64_t nodes_of_face_offsets[nodes_per_face];
         const int levels=hierarchy.Levels();
 
-        for(int axis=0;axis<d;++axis){Topology_Helper::Nodes_Of_Face_Offsets(nodes_of_face_offsets,axis);
+        for(int axis=0;axis<d;++axis){int nodes_of_face_offsets[nodes_per_face];
+            Topology_Helper::Nodes_Of_Face_Shadow_Grid_Offsets(nodes_of_face_offsets,axis);
             const unsigned face_valid_mask=Topology_Helper::Face_Valid_Mask(axis);
 
             // clear nodal values and weights, perform in-level averaging
