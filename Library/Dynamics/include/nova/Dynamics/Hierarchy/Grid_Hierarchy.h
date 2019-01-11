@@ -39,7 +39,7 @@ class Grid_Hierarchy
     Array<Page_Map_type*> page_maps;
     Array<Allocator_type*> allocators;
     Array<Array<uint64_t>> boundary_blocks,copy_of_blocks;
-    Array<Array<std::pair<const uint64_t*,unsigned>>> red_blocks,black_blocks;
+    Array<std::vector<std::pair<const uint64_t*,unsigned>>> red_blocks,black_blocks;
 
     void Initialize_Allocators()
     {
@@ -98,6 +98,14 @@ class Grid_Hierarchy
 
     Allocator_type& Allocator(const int level)
     {return *allocators[level];}
+
+    // access to red blocks
+    const std::vector<std::pair<const unsigned long*,unsigned> >& Red_Partition(const int level) const
+    {return red_blocks(level);}
+
+    // access to black blocks
+    const std::vector<std::pair<const unsigned long*,unsigned> >& Black_Partition(const int level) const
+    {return black_blocks(level);}
 
     // access to blocks (for optimized iteration)
     std::pair<const uint64_t*,unsigned> Blocks(const int level) const
@@ -160,6 +168,8 @@ class Grid_Hierarchy
         black_blocks.resize(levels);
         for(int level=0;level<levels;++level){
             SPGrid::Partitioning_Helper<Struct_type,d> partitioning_helper(Allocator(level),Set<unsigned>(level,&Struct_type::flags),copy_of_blocks(level));
+            red_blocks(level)=std::vector<std::pair<const uint64_t*,unsigned>>();
+            black_blocks(level)=std::vector<std::pair<const uint64_t*,unsigned>>();
             partitioning_helper.Generate_Red_Black_Partition(number_of_partitions,red_blocks(level),black_blocks(level));}
 
         for(int level=0;level<levels;++level){

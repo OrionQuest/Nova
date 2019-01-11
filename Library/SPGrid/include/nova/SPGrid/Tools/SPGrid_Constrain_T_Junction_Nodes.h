@@ -113,7 +113,7 @@ template<class Struct_type,class T,int d>
 class Constrain_T_Junction_Nodes
 {
     using Flags_type                = typename Struct_type::Flags_type;
-    using Hierarchy                 = Grid_Hierarchy<Struct_type,T,d>;
+    using Hierarchy                 = Nova::Grid_Hierarchy<Struct_type,T,d>;
     using Allocator_type            = SPGrid_Allocator<Struct_type,d>;
     using Flag_array_mask           = typename Allocator_type::template Array_mask<unsigned>;
     using Block_Iterator            = SPGrid_Block_Iterator<Flag_array_mask>;
@@ -134,7 +134,7 @@ class Constrain_T_Junction_Nodes
         auto flags=hierarchy.Allocator(level).template Get_Const_Array<Struct_type,unsigned>(&Struct_type::flags);
 
         for(Block_Iterator iterator(blocks);iterator.Valid();iterator.Next()){uint64_t offset=iterator.Offset();
-            if(flags(offset)&Node_T_Junction){int m=0;
+            if(flags(offset)&(Nova::Node_T_Junction)){int m=0;
                 Constrain_T_Junction_Nodes_Helper<Flag_array_mask,d>::Find_Neighboring_Nodes(offset,neighbor_offsets,m);
                 double value=(double)0;
                 for(int node=0;node<m;node++) value+=(double)hierarchy.Channel(level+1,node_channel)(neighbor_offsets[node]);

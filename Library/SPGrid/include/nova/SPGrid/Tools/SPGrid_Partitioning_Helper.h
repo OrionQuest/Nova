@@ -57,7 +57,7 @@ template<class Struct_type,int d>
 class Partitioning_Helper
 {
     using T_Block               = std::pair<const uint64_t*,unsigned>;
-    using TV_Block              = Nova::Array<T_Block>;
+    using TV_Block              = std::vector<T_Block>;
     using T_Partition           = std::pair<TV_Block,TV_Block>;
     using Allocator_type        = SPGrid_Allocator<Struct_type,d>;
     using Flag_array_mask       = typename Allocator_type::template Array_mask<unsigned>;
@@ -114,8 +114,8 @@ class Partitioning_Helper
                     if(set.Is_Set(neighbor,ALL_ONES))
                         minimum_offset=std::max(minimum_offset,neighbor,&Partitioning_Helper::lex_compare_packed_offsets);}}
             // add block to red or black
-            if(partition%2) black_blocks.Append(block);
-            else red_blocks.Append(block);
+            if(partition%2) black_blocks.push_back(block);
+            else red_blocks.push_back(block);
             // dont go too far
             if(current_index >= size) break;}
     }

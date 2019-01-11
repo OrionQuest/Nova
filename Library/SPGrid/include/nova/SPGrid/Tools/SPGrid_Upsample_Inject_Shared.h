@@ -14,7 +14,7 @@ template<class Struct_type,class T,int d>
 class Upsample_Inject_Shared
 {
     using Flags_type                = typename Struct_type::Flags_type;
-    using Allocator_type            = SPGrid_Allocator<NextLogTwo<sizeof(Struct_type)>::value,d>;
+    using Allocator_type            = SPGrid_Allocator<Struct_type,d>;
     using Flag_array_mask           = typename Allocator_type::template Array_mask<unsigned>;
 
   public:
