@@ -166,8 +166,8 @@ class Grid_Hierarchy
         // set up read black partition
         red_blocks.resize(levels);
         black_blocks.resize(levels);
-        for(int level=0;level<levels;++level){
-            SPGrid::Partitioning_Helper<Struct_type,d> partitioning_helper(Allocator(level),Set<unsigned>(level,&Struct_type::flags),copy_of_blocks(level));
+        for(int level=0;level<levels;++level){Set_type set=Set<unsigned>(level,&Struct_type::flags);
+            SPGrid::Partitioning_Helper<Struct_type,d> partitioning_helper(Allocator(level),set,copy_of_blocks(level));
             red_blocks(level)=std::vector<std::pair<const uint64_t*,unsigned>>();
             black_blocks(level)=std::vector<std::pair<const uint64_t*,unsigned>>();
             partitioning_helper.Generate_Red_Black_Partition(number_of_partitions,red_blocks(level),black_blocks(level));}

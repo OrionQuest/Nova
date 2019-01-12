@@ -92,18 +92,18 @@ struct Constrain_T_Junction_Nodes_Helper<T_Mask,3>
         else if(parity==Parity_100){m=4;
             neighbor_offsets[0]=coarse_offset;
             neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_y);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_z);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_y_and_z);}
+            neighbor_offsets[2]=T_Mask::Packed_Add(coarse_offset,plus_z);
+            neighbor_offsets[3]=T_Mask::Packed_Add(coarse_offset,plus_y_and_z);}
         else if(parity==Parity_010){m=4;
             neighbor_offsets[0]=coarse_offset;
             neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_x);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_z);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_x_and_z);}
+            neighbor_offsets[2]=T_Mask::Packed_Add(coarse_offset,plus_z);
+            neighbor_offsets[3]=T_Mask::Packed_Add(coarse_offset,plus_x_and_z);}
         else if(parity==Parity_001){m=4;
             neighbor_offsets[0]=coarse_offset;
             neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_x);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_y);
-            neighbor_offsets[1]=T_Mask::Packed_Add(coarse_offset,plus_x_and_y);}
+            neighbor_offsets[2]=T_Mask::Packed_Add(coarse_offset,plus_y);
+            neighbor_offsets[3]=T_Mask::Packed_Add(coarse_offset,plus_x_and_y);}
         else if(parity==Parity_000) Nova::FATAL_ERROR("Invalid arrangement for T-Junction node!");
         else Nova::FATAL_ERROR("Should never reach this point!");
     }
