@@ -35,6 +35,14 @@ class Cylinder
         plane1.x1=point1;plane1.normal=height_vector;
         plane2.x1=point2;plane2.normal=-plane1.normal;
     }
+
+    T Signed_Distance(const TV& X) const
+    {
+        TV v=X-plane1.x1;
+        T plane1_distance=v.Dot_Product(plane1.normal),plane_distance=std::max(plane1_distance,-height-plane1_distance);
+        T cylinder_distance=(v-plane1_distance*plane1.normal).Norm()-radius;
+        return cylinder_distance>0 && plane_distance>0?std::sqrt(std::pow(cylinder_distance,2)+std::pow(plane_distance,2)):std::max(cylinder_distance,plane_distance);
+    }
 };
 }
 #endif
