@@ -7,11 +7,11 @@
 #define __Cylinder_Implicit_Object__
 
 #include <nova/Geometry/Basic_Geometry/Cylinder.h>
-#include <nova/Geometry/Implicit_Objects/Analytic_Implicit_Object.h>
+#include <nova/Geometry/Implicit_Objects/Implicit_Object.h>
 
 namespace Nova{
 template<class T>
-class Cylinder_Implicit_Object: public Analytic_Implicit_Object<T,3>, public Cylinder<T>
+class Cylinder_Implicit_Object: public Implicit_Object<T,3>, public Cylinder<T>
 {
     enum {d=3};
     using TV                        = Vector<T,d>;

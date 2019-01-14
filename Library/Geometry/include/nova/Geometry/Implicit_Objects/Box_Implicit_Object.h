@@ -7,12 +7,12 @@
 #define __Box_Implicit_Object__
 
 #include <nova/Geometry/Basic_Geometry/Box.h>
-#include <nova/Geometry/Implicit_Objects/Analytic_Implicit_Object.h>
+#include <nova/Geometry/Implicit_Objects/Implicit_Object.h>
 #include <nova/Tools/Log/Debug_Utilities.h>
 
 namespace Nova{
 template<class T,int d>
-class Box_Implicit_Object: public Analytic_Implicit_Object<T,d>, public Box<T,d>
+class Box_Implicit_Object: public Implicit_Object<T,d>, public Box<T,d>
 {
     using TV                        = Vector<T,d>;
     using Geometry_Base             = Box<T,d>;
