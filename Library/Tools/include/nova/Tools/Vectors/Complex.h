@@ -33,6 +33,14 @@ class Complex
     static Complex<T> One()
     {return Complex(1,0);}
 
+    Complex& operator=(const Complex<T>& rhs)
+    {
+        if(*this==&rhs) return *this;
+        re=rhs.re;
+        im=rhs.im;
+        return *this;
+    }
+
     bool operator==(const Complex<T>& c) const
     {return re==c.re && im==c.im;}
 
@@ -137,4 +145,5 @@ template<class T>
 inline Complex<T> operator*(const T a,const Complex<T>& c)
 {return Complex<T>(a*c.re,a*c.im);}
 }
+#include <nova/Tools/Read_Write/Vectors/Read_Write_Complex.h>
 #endif

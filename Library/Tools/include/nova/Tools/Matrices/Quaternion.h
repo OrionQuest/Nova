@@ -31,6 +31,18 @@ class Quaternion
         :s(s_input),v(v_input)
     {}
 
+    explicit Quaternion(const Vector<T,4>& q)
+        :s(q[0]),v(q[1],q[2],q[3])
+    {}
+
+    Quaternion& operator=(const Quaternion<T>& rhs)
+    {
+        if(*this==&rhs) return *this;
+        s=rhs.s;
+        v=rhs.v;
+        return *this;
+    }
+
     static Quaternion One()
     {return Quaternion(1,0,0,0);}
 
@@ -124,4 +136,5 @@ template<class T>
 inline std::ostream& operator<<(std::ostream& output,const Quaternion<T>& q)
 {output<<"("<<q.s<<" "<<q.v<<")";return output;}
 }
+#include <nova/Tools/Read_Write/Matrices/Read_Write_Quaternion.h>
 #endif
