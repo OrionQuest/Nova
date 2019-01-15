@@ -13,6 +13,8 @@ namespace Nova{
 template<class T>
 class Complex
 {
+    enum {d=2};
+
   public:
     T re,im;
 
@@ -27,9 +29,6 @@ class Complex
     explicit Complex(const Vector<T,d>& input)
         :re(input(0)),im(input(1))
     {}
-
-    Vector<T,2> Vector() const
-    {return Vector<T,2>({re,im});}
 
     static Complex<T> One()
     {return Complex(1,0);}
