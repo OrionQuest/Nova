@@ -39,12 +39,25 @@ namespace Nova_Utilities
 
     /*! Squaring function
      *
-     * Returns the square a given value.
+     * Returns the square of a given value.
      * \param a Argument of type T.
      */
     template<class T>
     inline T Sqr(const T a)
     {return a*a;}
+
+    /*! Sign function
+     *
+     * Returns the sign of a given value.
+     * \param a Argument of type T.
+     */
+    template<class T>
+    inline T Sign(const T a)
+    {
+        if(a>0) return (T)1;
+        else if(a<0) return -(T)1;
+        else return (T)0;
+    }
 }
 }
 #endif
