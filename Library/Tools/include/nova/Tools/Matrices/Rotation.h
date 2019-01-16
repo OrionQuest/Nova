@@ -45,7 +45,7 @@ class Rotation<T,2>
 
     Rotation& operator=(const Rotation<T,d>& rhs)
     {
-        if(*this==&rhs) return *this;
+        if(this==&rhs) return *this;
         c=rhs.c;
         return *this;
     }
@@ -203,7 +203,7 @@ class Rotation<T,3>
 
     Rotation& operator=(const Rotation<T,d>& rhs)
     {
-        if(*this==&rhs) return *this;
+        if(this==&rhs) return *this;
         q=rhs.q;
         return *this;
     }
@@ -277,18 +277,12 @@ class Rotation<T,3>
         return 2*atan2_y_x_over_y(q.v.Norm(),fabs(q.s))*(q.s<0?-q.v:q.v);
     }
 
-    inline T sinc(const T x)                            // sin(x)/x
-    {
-        if(fabs(x)<1e-8) return 1;
-        return sin(x)/x;
-    }
-
     static Rotation<T,d> From_Rotation_Vector(const TV& v)
     {
         T norm=v.Norm();
         Rotation<T,d> r;
         r.q.s=(T)std::cos((T).5*norm);
-        r.q.v=(T).5*sinc((T).5*norm)*v;
+        r.q.v=(T).5*Nova_Utilities::Sinc<T>((T).5*norm)*v;
         return r;
     }
 

@@ -37,7 +37,7 @@ class Quaternion
 
     Quaternion& operator=(const Quaternion<T>& rhs)
     {
-        if(*this==&rhs) return *this;
+        if(this==&rhs) return *this;
         s=rhs.s;
         v=rhs.v;
         return *this;
@@ -70,7 +70,7 @@ class Quaternion
     Quaternion& operator/=(const T a)
     {
         assert(a!=0);
-        T r=(T)1./s;
+        T r=(T)1./a;
         s*=r;v*=r;
         return *this;
     }

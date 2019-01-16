@@ -35,7 +35,7 @@ class Complex
 
     Complex& operator=(const Complex<T>& rhs)
     {
-        if(*this==&rhs) return *this;
+        if(this==&rhs) return *this;
         re=rhs.re;
         im=rhs.im;
         return *this;

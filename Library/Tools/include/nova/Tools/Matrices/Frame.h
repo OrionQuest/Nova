@@ -39,7 +39,7 @@ class Frame
 
     Frame& operator=(const Frame<T,d>& rhs)
     {
-        if(*this==&rhs) return *this;
+        if(this==&rhs) return *this;
         t=rhs.t;r=rhs.r;
         return *this;
     }

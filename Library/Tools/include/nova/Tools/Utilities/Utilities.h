@@ -7,6 +7,7 @@
 #define __Utilities__
 
 #include "nova/Tools/Utilities/infix_iterator.h"
+#include <cmath>
 #include <utility>
 
 namespace Nova{
@@ -57,6 +58,18 @@ namespace Nova_Utilities
         if(a>0) return (T)1;
         else if(a<0) return -(T)1;
         else return (T)0;
+    }
+
+    /*! Sinc function
+     *
+     * Returns sin(x)/x of a given value.
+     * \param x Argument of type T.
+     */
+    template<class T>
+    inline T Sinc(const T x)
+    {
+        if(fabs(x)<1e-8) return 1;
+        return (T)std::sin(x)/x;
     }
 }
 }
