@@ -1,11 +1,43 @@
 //!#####################################################################
 //! \file Triangulated_Surface.cpp
 //!#####################################################################
+#include <nova/Geometry/Basic_Geometry/Box.h>
 #include <nova/Geometry/Basic_Geometry/Cylinder.h>
 #include <nova/Geometry/Basic_Geometry/Sphere.h>
 #include <nova/Geometry/Topology_Based_Geometry/Triangulated_Surface.h>
 #include <nova/Tools/Utilities/Constants.h>
 using namespace Nova;
+//######################################################################
+// Initialize_Box_Tessellation
+//######################################################################
+template<class T> void Nova::Triangulated_Surface<T>::
+Initialize_Box_Tessellation(const Box<T,d>& box)
+{
+    points.Clear();elements.Clear();
+
+    Add_Vertex(TV({box.min_corner[0],box.min_corner[1],box.max_corner[2]}));
+    Add_Vertex(TV({box.max_corner[0],box.min_corner[1],box.max_corner[2]}));
+    Add_Vertex(TV({box.max_corner[0],box.max_corner[1],box.max_corner[2]}));
+    Add_Vertex(TV({box.min_corner[0],box.max_corner[1],box.max_corner[2]}));
+    Add_Vertex(TV({box.min_corner[0],box.min_corner[1],box.min_corner[2]}));
+    Add_Vertex(TV({box.max_corner[0],box.min_corner[1],box.min_corner[2]}));
+    Add_Vertex(TV({box.max_corner[0],box.max_corner[1],box.min_corner[2]}));
+    Add_Vertex(TV({box.min_corner[0],box.max_corner[1],box.min_corner[2]}));
+
+    Add_Element(INDEX({0,3,7}));
+    Add_Element(INDEX({7,4,0}));
+    Add_Element(INDEX({1,5,6}));
+    Add_Element(INDEX({6,2,1}));
+    Add_Element(INDEX({4,1,0}));
+    Add_Element(INDEX({1,4,5}));
+    Add_Element(INDEX({6,7,2}));
+    Add_Element(INDEX({3,2,7}));
+    Add_Element(INDEX({4,7,6}));
+    Add_Element(INDEX({6,5,4}));
+    Add_Element(INDEX({0,1,2}));
+    Add_Element(INDEX({0,2,3}));
+    number_of_nodes=points.size();
+}
 //######################################################################
 // Initialize_Sphere_Tessellation
 //######################################################################

@@ -11,6 +11,7 @@
 
 namespace Nova{
 
+template<class T,int d> class Box;
 template<class T,int d> class Sphere;
 
 template<class T,int d>
@@ -33,6 +34,7 @@ class Segmented_Curve: public Point_Cloud<T,d>,public Simplex_Mesh<2>
     {}
 
 //######################################################################
+    void Initialize_Box_Tessellation(const Box<T,d>& box);
     void Initialize_Sphere_Tessellation(const Sphere<T,d>& sphere,const int levels=4);
 //######################################################################
 };

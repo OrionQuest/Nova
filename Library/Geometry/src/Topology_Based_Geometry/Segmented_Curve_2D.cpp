@@ -1,10 +1,30 @@
 //!#####################################################################
 //! \file Segmented_Curve_2D.cpp
 //!#####################################################################
+#include <nova/Geometry/Basic_Geometry/Box.h>
 #include <nova/Geometry/Basic_Geometry/Sphere.h>
 #include <nova/Geometry/Topology_Based_Geometry/Segmented_Curve.h>
 #include <nova/Tools/Utilities/Constants.h>
 using namespace Nova;
+//######################################################################
+// Initialize_Sphere_Tessellation
+//######################################################################
+template<class T,int d> void Nova::Segmented_Curve<T,d>::
+Initialize_Box_Tessellation(const Box<T,d>& box)
+{
+    points.Clear();elements.Clear();
+
+    Add_Vertex(TV({box.min_corner[0],box.min_corner[1]}));
+    Add_Vertex(TV({box.max_corner[0],box.min_corner[1]}));
+    Add_Vertex(TV({box.max_corner[0],box.max_corner[1]}));
+    Add_Vertex(TV({box.min_corner[0],box.max_corner[1]}));
+
+    Add_Element(INDEX({0,1}));
+    Add_Element(INDEX({1,2}));
+    Add_Element(INDEX({2,3}));
+    Add_Element(INDEX({3,0}));
+    number_of_nodes=points.size();
+}
 //######################################################################
 // Initialize_Sphere_Tessellation
 //######################################################################
