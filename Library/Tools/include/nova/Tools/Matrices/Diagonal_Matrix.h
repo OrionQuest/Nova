@@ -139,4 +139,5 @@ template<class T,int d>
 Diagonal_Matrix<T,d> operator*(const T& a,const Diagonal_Matrix<T,d>& other)
 {return Diagonal_Matrix<T,d>(other._data*a);}
 }
+#include <nova/Tools/Read_Write/Matrices/Read_Write_Diagonal_Matrix.h>
 #endif
