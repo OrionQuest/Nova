@@ -50,7 +50,7 @@ class Rigid_Geometry
     void Set_Frame(const TV& x,const Rotation<T,d>& r)
     {f.t=x;f.r=r;}
 
-    TV  Object_Space_Point(const TV& world_space_point) const
+    TV Object_Space_Point(const TV& world_space_point) const
     {return f.Inverse_Times(world_space_point);}
 
     TV Object_Space_Vector(const TV& world_space_vector) const
@@ -77,6 +77,9 @@ class Rigid_Geometry
         for(int i=0;i<(int)object->points.size();++i)
             object->points[i]-=center_of_mass;
     }
+
+    void Initialize_Implicit_Object(T_Implicit_Object *implicit_object_input)
+    {implicit_object=implicit_object_input;}
 };
 }
 #include <nova/Geometry/Read_Write/Solids_Geometry/Read_Write_Rigid_Geometry.h>
