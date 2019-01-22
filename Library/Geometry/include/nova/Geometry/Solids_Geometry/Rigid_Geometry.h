@@ -50,6 +50,12 @@ class Rigid_Geometry
     void Set_Frame(const TV& x,const Rotation<T,d>& r)
     {f.t=x;f.r=r;}
 
+    TV& X()
+    {return f.t;}
+
+    const TV& X() const
+    {return f.t;}
+
     TV Object_Space_Point(const TV& world_space_point) const
     {return f.Inverse_Times(world_space_point);}
 
@@ -61,6 +67,9 @@ class Rigid_Geometry
 
     TV World_Space_Vector(const TV& object_space_vector) const
     {return f.r.Rotate(object_space_vector);}
+
+    TV Pointwise_Object_Velocity(const TV& X) const
+    {return V+Cross_Product(angular_velocity,X-f.t);}
 
     void Initialize_Simplicial_Object(T_Simplicial_Object *object_input)
     {

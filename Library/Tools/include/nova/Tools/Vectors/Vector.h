@@ -664,6 +664,18 @@ Vector<T,1,order_ascending> Cross_Product(const Vector<T,2,order_ascending>& v1,
     return Vector<T,1,order_ascending>(v1[0]*v2[1]-v1[1]*v2[0]);
 }
 
+template<class T,bool order_ascending=true> constexpr
+Vector<T,2,order_ascending> Cross_Product(const Vector<T,2,order_ascending>& v1,const Vector<T,1,order_ascending>& v2)      // v2 is out of plane
+{
+    return Vector<T,2,order_ascending>{v1[1]*v2[0],-v1[0]*v2[0]};
+}
+
+template<class T,bool order_ascending=true> constexpr
+Vector<T,2,order_ascending> Cross_Product(const Vector<T,1,order_ascending>& v1,const Vector<T,2,order_ascending>& v2)      // v1 is out of plane
+{
+    return Vector<T,2,order_ascending>{-v1[0]*v2[1],v1[0]*v2[0]};
+}
+
 template<class T,int d,bool order_ascending>
 std::ostream& operator<<(std::ostream& out,const Vector<T,d,order_ascending>& index)
 {
