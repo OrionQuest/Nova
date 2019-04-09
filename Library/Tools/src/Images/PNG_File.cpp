@@ -73,11 +73,11 @@ Write(const std::string& filename,const Array_ND<Vector<T,d>,2>& image)
     return;
 }
 //######################################################################
-template class PNG_File<float>;
-template void PNG_File<float>::Write(const std::string&,const Array_ND<Vector<float,3>,2>&);
-template void PNG_File<float>::Write(const std::string&,const Array_ND<Vector<float,4>,2>&);
+template class Nova::PNG_File<float>;
+template void Nova::PNG_File<float>::Write(const std::string&,const Array_ND<Vector<float,3>,2>&);
+template void Nova::PNG_File<float>::Write(const std::string&,const Array_ND<Vector<float,4>,2>&);
 #ifdef COMPILE_WITH_DOUBLE_SUPPORT
-template class PNG_File<double>;
-template void PNG_File<double>::Write(const std::string&,const Array_ND<Vector<double,3>,2>&);
-template void PNG_File<double>::Write(const std::string&,const Array_ND<Vector<double,4>,2>&);
+template class Nova::PNG_File<double>;
+template void Nova::PNG_File<double>::Write(const std::string&,const Array_ND<Vector<double,3>,2>&);
+template void Nova::PNG_File<double>::Write(const std::string&,const Array_ND<Vector<double,4>,2>&);
 #endif
