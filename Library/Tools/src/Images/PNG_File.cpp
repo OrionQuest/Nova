@@ -26,9 +26,9 @@ Read(const std::string& filename,Array_ND<Vector<T,3>,2>& image)
     int width=png_get_image_width(png_ptr,info_ptr),height=png_get_image_height(png_ptr,info_ptr);
     int color_type=png_get_color_type(png_ptr,info_ptr);
     if(color_type!=PNG_COLOR_TYPE_RGB && color_type!=PNG_COLOR_TYPE_RGBA) FATAL_ERROR("PNG read only supports RGB and RGBA");
-    image.Resize(Range<int,2>(T_INDEX({0,width-1}),T_INDEX({0,height-1})));
+    image.Resize(Range<int,2>(T_INDEX(),T_INDEX({width-1,height-1})));
     Vector<unsigned char,3>** row_pointers=(Vector<unsigned char,3>**)png_get_rows(png_ptr,info_ptr);
-    for(int i=0;i<width;++i)for(int j=0;j<height;++j) image(T_INDEX({i,j}))=Image<T>::Byte_Color_To_Scalar_Color(row_pointers[height-j-1][i]);
+    for(int i=1;i<=width;++i)for(int j=1;j<=height;++j) image(T_INDEX({i-1,j-1}))=Image<T>::Byte_Color_To_Scalar_Color(row_pointers[height-j][i-1]);
         
     png_destroy_read_struct(&png_ptr,&info_ptr,0);
     fclose(file);
@@ -61,9 +61,9 @@ Write(const std::string& filename,const Array_ND<Vector<T,d>,2>& image)
 
     Vector<unsigned char,d>* byte_data=new Vector<unsigned char,d>[image.counts(1)*image.counts(0)];
     Vector<unsigned char,d>** row_pointers=new Vector<unsigned char,d>*[image.counts(1)];
-    for(int j=0;j<image.counts(1);++j){
-        row_pointers[image.counts(1)-j-1]=byte_data+image.counts(0)*(image.counts(1)-j-1);
-        for(int i=0;i<image.counts(0);++i) row_pointers[image.counts(1)-j-1][i]=Image<T>::Scalar_Color_To_Byte_Color(image(T_INDEX({i,j})));}
+    for(int j=1;j<=image.counts(1);++j){
+        row_pointers[image.counts(1)-j]=byte_data+image.counts(0)*(image.counts(1)-j);
+        for(int i=1;i<=image.counts(0);++i) row_pointers[image.counts(1)-j][i-1]=Image<T>::Scalar_Color_To_Byte_Color(image(T_INDEX({i-1,j-1})));}
     png_set_rows(png_ptr,info_ptr,(png_byte**)row_pointers);
     png_write_png(png_ptr,info_ptr,PNG_TRANSFORM_IDENTITY,0);
     delete[] row_pointers;delete[] byte_data;

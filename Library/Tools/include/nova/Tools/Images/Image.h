@@ -24,11 +24,11 @@ class Image
 
     template<int d> static Vector<unsigned char,d> Scalar_Color_To_Byte_Color(const Vector<T,d>& color_in)
     {
-        Vector<unsigned char,d> ret((T)256*color_in);
+        Vector<int,d> ret((T)256*color_in);
         for(int axis=0;axis<d;++axis){
-            ret(axis)=std::max(ret(axis),(unsigned char)0);
-            ret(axis)=std::min(ret(axis),(unsigned char)255);}
-        return ret;
+            ret(axis)=std::max(ret(axis),(int)0);
+            ret(axis)=std::min(ret(axis),(int)255);}
+        return Vector<unsigned char,d>(ret);
     }
 
     static unsigned char Scalar_Color_To_Byte_Color(const T color_in)
