@@ -30,8 +30,6 @@ script:
 - cd build
 - cmake ..
 - make
-- ctest --timeout 10
-- make doc
 env:
   global:
     secure: gr+RfoiGFK2cOmNA/NI/hpjb5bGrQNJOp8J5L5GDOEMtlZCU4Iupq0zyLPw+9yyBeksfqR8nD2KsNLmcSSIBMvh2VQX0/SH/t6PkF+Rt/j6QR4G88X30tbGZG5XCd+2bNHP8fGv6XleS21+u7ed5nh2zb/1z4Rlfazw75tzQydXiCVH0xUIMRTZgwmKeTxncBkMQhmPGYh97uwS5OztBFk0OcWU6cBzjnEpjPCpvcVuQe70YpWmxldCajnCyFukM2yUqX8tDrvPcOkzzqNFaIbKEbpcyLmzk8Izmrb7VfVh/9corcjx3CtUDeyfQS6pxk4njxabZf5399aKGmj0eHcWI/W6x3NAGWVtQTZpFMVEXqb0oqGiw6Lx3I7Qieul+6OjP6XPdY13QuFmZwfQunTQ1uKHHqt+yluHYLm6GlEKaslmMOASuv+XkrHMDXryOQicCIUzz+OxULAJw/UQT5xoZzUuS1QeXoug30TiBiXe6A03NgWoxDAOv5iQ0SzDRHiRlIJiI7ZRUwlEK/QtpQhzS4Eo2VczCJe9OIjUoDD6BPpX8h6fAR2R8H2R9zfFO+JnXqI6oKicbdMwMac818uwN9i3V/N26eBZOYLtqCSs2NJFocR8ge7a7KhF5B6xczKefHnOalNu1PRVli2I4czsuZRH09SXePwdcwsqt4Xs=
