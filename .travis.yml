@@ -20,7 +20,6 @@ before_install:
 - sudo apt-get install -qq -y doxygen
 - sudo apt-get install -qq -y python-pip
 - sudo apt-get install -qq -y libboost-filesystem1.54-dev
-- sudo pip install sphinx==1.4.8 breathe
 - wget http://http.us.debian.org/debian/pool/main/g/glfw3/libglfw3_3.2.1-1_amd64.deb
 - wget http://http.us.debian.org/debian/pool/main/g/glfw3/libglfw3-dev_3.2.1-1_amd64.deb
 - sudo dpkg -i libglfw3_3.2.1-1_amd64.deb
