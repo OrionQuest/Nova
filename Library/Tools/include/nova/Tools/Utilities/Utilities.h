@@ -47,6 +47,15 @@ namespace Nova_Utilities
     inline T Sqr(const T a)
     {return a*a;}
 
+    /*! Cubing function
+     *
+     * Returns the cube of a given value.
+     * \param a Argument of type T.
+     */
+    template<class T>
+    inline T Cube(const T a)
+    {return a*a*a;}
+
     /*! Sign function
      *
      * Returns the sign of a given value.
