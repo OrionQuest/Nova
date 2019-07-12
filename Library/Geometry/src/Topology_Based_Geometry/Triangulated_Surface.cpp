@@ -118,6 +118,7 @@ Initialize_Cylinder_Tessellation(const Cylinder<T>& cylinder,const int m,const i
         if(create_caps){
             Add_Element(INDEX({m*n,j-1,j_1-1}));
             Add_Element(INDEX({m*n+1,j_1+(m-1)*n-1,j+(m-1)*n-1}));}}
+    number_of_nodes=points.size();
 }
 //######################################################################
 template class Nova::Triangulated_Surface<float>;
