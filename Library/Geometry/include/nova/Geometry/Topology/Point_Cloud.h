@@ -7,6 +7,7 @@
 #define __Point_Cloud__
 
 #include <nova/Tools/Arrays/Array.h>
+#include <nova/Tools/Utilities/Range.h>
 #include <nova/Tools/Vectors/Vector.h>
 
 namespace Nova{
@@ -39,6 +40,13 @@ class Point_Cloud
     {
         points.Append(X);
         return points.size();
+    }
+
+    void Compute_Bounding_Box(Range<T,d>& box)
+    {
+        for(unsigned i=0;i<points.size();++i) for(int v=0;v<d;++v){
+            box.min_corner[v]=std::min(box.min_corner[v],points[i][v]);
+            box.max_corner[v]=std::max(box.max_corner[v],points[i][v]);}
     }
 };
 }
