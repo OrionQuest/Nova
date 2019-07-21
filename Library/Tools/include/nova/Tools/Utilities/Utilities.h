@@ -38,6 +38,42 @@ namespace Nova_Utilities
         if(a>b) std::swap(a,b);
     }
 
+    /*! Minmag function
+     *
+     * Returns the value with minimum magnitude.
+     * \param a Argument of type T.
+     * \param b Argument of type T.
+     */
+    template<class T>
+    inline T Minmag(const T a,const T b)
+    {return fabs(a)<fabs(b)?a:b;}
+    
+    /*! Minmag function
+     *
+     * Returns the value with minimum magnitude.
+     * \param a Argument of type T.
+     * \param b Argument of type T.
+     * \param c Argument of type T.
+     */
+    template<class T>
+    inline T Minmag(const T a,const T b,const T c)
+    {return Minmag(a,Minmag(b,c));}
+
+    /*! Clamp function
+     *
+     * Returns the clamped value within specified bounds.
+     * \param x Argument of type T.
+     * \param xmin Argument of type T.
+     * \param xmax Argument of type T.
+     */
+    template<class T> 
+    inline T Clamp(const T x,const T xmin,const T xmax)
+    {
+        if(x<=xmin) return xmin;
+        else if(x>=xmax) return xmax;
+        return x;
+    }
+
     /*! Squaring function
      *
      * Returns the square of a given value.
