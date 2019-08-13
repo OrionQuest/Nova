@@ -92,6 +92,15 @@ namespace Nova_Utilities
     inline T Cube(const T a)
     {return a*a*a;}
 
+    /*! Quadruple function
+     *
+     * Returns the fourth power of a given value.
+     * \param a Argument of type T.
+     */
+    template<class T>
+    inline T Quadruple(const T a)
+    {return a*a*a*a;}
+
     /*! Sign function
      *
      * Returns the sign of a given value.
