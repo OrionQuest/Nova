@@ -114,4 +114,5 @@ class Array_ND
     }
 };
 }
+#include <nova/Tools/Read_Write/Arrays/Read_Write_Array_ND.h>
 #endif
