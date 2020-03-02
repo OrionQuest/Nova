@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/opengl.dir/main.cpp.o  -o ../../../bin/opengl -Wl,-rpath,/home/hertz/Desktop/Nova/build/lib ../../../lib/libopengl_kernel.so -lboost_filesystem -lboost_program_options -lboost_regex -lboost_system -ldl -lGL -lGLU -lglfw -lGLEW 

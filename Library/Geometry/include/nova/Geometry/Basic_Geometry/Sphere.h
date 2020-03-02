@@ -7,6 +7,7 @@
 #define __Sphere__
 
 #include <nova/Tools/Vectors/Vector.h>
+#include <nova/Tools/Utilities/Constants.h>
 
 namespace Nova{
 template<class T,int d>
@@ -24,6 +25,12 @@ class Sphere
 
     T Signed_Distance(const TV& X) const
     {return (X-center).Norm()-radius;}
+
+    T Size() const 
+    {
+      if(d==2) return pi*radius*radius;
+      if(d==3) return four_thirds*pi*radius*radius*radius;
+    }
 };
 }
 #endif

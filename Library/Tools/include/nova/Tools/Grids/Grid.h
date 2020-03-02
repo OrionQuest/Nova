@@ -76,6 +76,13 @@ class Grid
         T_INDEX index=T_INDEX((X-domain.min_corner)*one_over_dX)+1;
         return Cell_Indices(number_of_ghost_cells).Clamp(index);
     }
+    
+    T_INDEX Closest_Cell(const TV& location, const int number_of_ghost_cells=0) const 
+    {
+        T_INDEX index;
+        Cell(location,index,number_of_ghost_cells);
+        return index;
+    }
 
     T_INDEX Closest_Node(const TV& X,const int number_of_ghost_cells=0) const
     {

@@ -9,6 +9,7 @@
 #include <nova/Tools/Random_Numbers/MT19937.h>
 #include <nova/Tools/Utilities/Non_Copyable.h>
 #include <nova/Tools/Utilities/Range.h>
+#include <nova/Geometry/Basic_Geometry/Sphere.h>
 #include <nova/Tools/Vectors/Vector.h>
 #include <algorithm>
 #include <ctime>
@@ -46,6 +47,13 @@ class Random_Numbers: public Non_Copyable
 
     template<int d> Vector<T,d> Get_Uniform_Vector(const Range<T,d>& box)
     {return Get_Uniform_Vector(box.min_corner,box.max_corner);}
+
+    template<int d> Vector<T,d> Get_Vector_In_Sphere(const Sphere<T,d> ball)
+    {
+      for(;;){
+        Vector<T,d> v=Get_Uniform_Vector(Range<T,d>::Centered_Box(ball.radius));
+        if(v.Norm()<=(T)ball.radius) return v;}  
+    }
 };
 }
 #endif
