@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/ClassGridUnitTest.dir/ClassGridUnitTest.cpp.o  -o ../../bin/ClassGridUnitTest -Wl,-rpath,/home/hertz/Desktop/Nova/build/lib ../../lib/lib_nova_tools.so -lboost_filesystem -lboost_system -lpng 

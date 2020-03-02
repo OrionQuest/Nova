@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,lib_nova_spgrid.so -o ../../lib/lib_nova_spgrid.so CMakeFiles/_nova_spgrid.dir/src/Core/SPGrid_Geometry.cpp.o CMakeFiles/_nova_spgrid.dir/src/Core/SPGrid_Utilities.cpp.o -Wl,-rpath,/home/hertz/Desktop/Nova/build/lib ../../lib/lib_nova_tools.so -lboost_filesystem -lboost_system -lpng 
