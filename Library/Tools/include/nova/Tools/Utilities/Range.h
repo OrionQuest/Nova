@@ -58,6 +58,11 @@ class Range
         return Range<T,d>(TV(),TV(1));
     }
 
+    static Range<T,d> Centered_Box(T half_width)
+    {
+        return Range<T,d>(TV(-half_width),TV(half_width));
+    }
+
     TV Edge_Lengths() const
     {
         return max_corner-min_corner;
@@ -65,6 +70,11 @@ class Range
 
     T Size() const
     {return (Edge_Lengths()+1).Product();}
+
+    T Area() const
+    {
+        return Edge_Lengths().Product();
+    }
 
     Range<T,d>& operator=(const Range<T,d>& rhs)
     {

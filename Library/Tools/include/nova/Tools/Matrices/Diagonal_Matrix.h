@@ -55,6 +55,13 @@ class Diagonal_Matrix
     T Determinant() const
     {return _data.Product();}
 
+    T_Storage To_Vector() const
+    {
+        T_Storage vectorize_v;
+        for(int i=0;i<d;++i) vectorize_v[i]=_data[i];
+        return vectorize_v;
+    }
+
     T operator()(const int i,const int j) const
     {
         assert(i>=0 && i<d);
