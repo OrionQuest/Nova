@@ -1,10 +1,10 @@
 //!#####################################################################
-//! \file Face_Velocity_Advection_Helper.h
+//! \file Face_Vector_Advection_Helper.h
 //!#####################################################################
-// Class Face_Velocity_Advection_Helper
+// Class Face_Vector_Advection_Helper
 //######################################################################
-#ifndef __Face_Velocity_Advection_Helper__
-#define __Face_Velocity_Advection_Helper__
+#ifndef __Face_Vector_Advection_Helper__
+#define __Face_Vector_Advection_Helper__
 
 #include <nova/Dynamics/Hierarchy/Advection/Grid_Hierarchy_Backtrace.h>
 #include <nova/Dynamics/Hierarchy/Interpolation/Grid_Hierarchy_Interpolation.h>
@@ -13,7 +13,7 @@
 
 namespace Nova{
 template<class Struct_type,class T,int d>
-class Face_Velocity_Advection_Helper
+class Face_Vector_Advection_Helper
 {
     using TV                        = Vector<T,d>;
     using T_INDEX                   = Vector<int,d>;
@@ -27,12 +27,12 @@ class Face_Velocity_Advection_Helper
     enum {number_of_nodes_per_face  = Topology_Helper::number_of_nodes_per_face};
 
   public:
-    Face_Velocity_Advection_Helper(Hierarchy& hierarchy,const std::pair<const uint64_t*,unsigned>& blocks,Channel_Vector& face_velocity_channels,Channel_Vector& node_velocity_channels,
+    Face_Vector_Advection_Helper(Hierarchy& hierarchy,const std::pair<const uint64_t*,unsigned>& blocks,Channel_Vector& face_vector_channels,Channel_Vector& node_vector_channels,Channel_Vector& face_velocity_channels,Channel_Vector& node_velocity_channels,
                                    T Struct_type::* result_channel,uint64_t* nodes_of_face_offsets,const Vector<uint64_t,d>& other_face_offsets,const TV& intra_cell_dX,const int level,
                                    const T dt,const unsigned mask,const int axis)
-    {Run(hierarchy,blocks,face_velocity_channels,node_velocity_channels,result_channel,nodes_of_face_offsets,other_face_offsets,intra_cell_dX,level,dt,mask,axis);}
+    {Run(hierarchy,blocks,face_vector_channels,node_vector_channels,face_velocity_channels,node_velocity_channels,result_channel,nodes_of_face_offsets,other_face_offsets,intra_cell_dX,level,dt,mask,axis);}
 
-    void Run(Hierarchy& hierarchy,const std::pair<const uint64_t*,unsigned>& blocks,Channel_Vector& face_velocity_channels,Channel_Vector& node_velocity_channels,
+    void Run(Hierarchy& hierarchy,const std::pair<const uint64_t*,unsigned>& blocks,Channel_Vector& face_vector_channels,Channel_Vector& node_vector_channels,Channel_Vector& face_velocity_channels,Channel_Vector& node_velocity_channels,
              T Struct_type::* result_channel,uint64_t* nodes_of_face_offsets,const Vector<uint64_t,d>& other_face_offsets,const TV& intra_cell_dX,const int level,
              const T dt,const unsigned mask,const int axis) const
     {
@@ -41,7 +41,7 @@ class Face_Velocity_Advection_Helper
         auto result=hierarchy.Allocator(level).template Get_Array<Struct_type,T>(result_channel);
         const T one_over_nodes_per_face=(T)1./number_of_nodes_per_face;
 
-        auto face_velocity_advection_helper=[&](uint64_t offset)
+        auto face_vector_advection_helper=[&](uint64_t offset)
         {
             Range_Iterator<d> range_iterator(T_INDEX(),*reinterpret_cast<T_INDEX*>(&block_size)-1);
             T_INDEX base_index(Flag_array_mask::LinearToCoord(offset));
@@ -57,19 +57,19 @@ class Face_Velocity_Advection_Helper
 
                     // backtrace
                     TV dX=-velocity*dt;
-                    // Log::cout<<"V: velocity: "<<velocity<<", dX: "<<dX<<std::endl;
+                    // Log::cout<<"velocity: "<<velocity<<", dX: "<<dX<<std::endl;
                     uint64_t new_offset=offset;int new_level=level;
                     TV weights=Grid_Hierarchy_Backtrace<Struct_type,T,d>::Backtrace(hierarchy,new_level,index,new_offset,intra_cell_dX,dX);
                     uint64_t other_offset=Flag_array_mask::Packed_Add(new_offset,other_face_offsets[axis]);
                     T val1=Hierarchy_Interpolation::Face_Interpolation_Helper(hierarchy,nodes_of_face_offsets,axis,new_level,new_offset,weights.Remove_Index(axis),
-                                                                              face_velocity_channels,node_velocity_channels);
+                                                                              face_vector_channels,node_vector_channels);
                     T val2=Hierarchy_Interpolation::Face_Interpolation_Helper(hierarchy,nodes_of_face_offsets,axis,new_level,other_offset,weights.Remove_Index(axis),
-                                                                              face_velocity_channels,node_velocity_channels);
+                                                                              face_vector_channels,node_vector_channels);
                     result(offset)=Linear_Interpolation<T,T>::Linear(val1,val2,weights(axis));}
                 range_iterator.Next();}
         };
 
-        SPGrid_Computations::Run_Parallel_Blocks(blocks,face_velocity_advection_helper);
+        SPGrid_Computations::Run_Parallel_Blocks(blocks,face_vector_advection_helper);
     }
 };
 }
