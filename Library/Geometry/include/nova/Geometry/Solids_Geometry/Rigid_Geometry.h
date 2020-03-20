@@ -71,20 +71,21 @@ class Rigid_Geometry
     TV Pointwise_Object_Velocity(const TV& X) const
     {return V+Cross_Product(angular_velocity,X-f.t);}
 
-    void Initialize_Simplicial_Object(T_Simplicial_Object *object_input)
+    void Initialize_Simplicial_Object(T_Simplicial_Object *object_input,bool renormalize=true)
     {
         if(object!=nullptr) delete object;
         object=object_input;
 
-        // compute center of mass
-        TV center_of_mass;
-        for(int i=0;i<(int)object->points.size();++i)
-            center_of_mass+=object->points[i];
-        center_of_mass/=(T)object->points.size();
+        if(renormalize){
+            // compute center of mass
+            TV center_of_mass;
+            for(int i=0;i<(int)object->points.size();++i)
+                center_of_mass+=object->points[i];
+            center_of_mass/=(T)object->points.size();
 
-        // renormalize all points
-        for(int i=0;i<(int)object->points.size();++i)
-            object->points[i]-=center_of_mass;
+            // renormalize all points
+            for(int i=0;i<(int)object->points.size();++i)
+                object->points[i]-=center_of_mass;}
     }
 
     void Initialize_Implicit_Object(T_Implicit_Object *implicit_object_input)
