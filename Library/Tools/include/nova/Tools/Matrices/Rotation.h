@@ -394,7 +394,7 @@ class Rotation<T,3>
         return r(r.size()-1);
     }
 
-    inline T clamp(const T x,const T xmin,const T xmax)
+    static inline T clamp(const T x,const T xmin,const T xmax)
     {
         if(x<=xmin) return xmin;
         else if(x>=xmax) return xmax;
