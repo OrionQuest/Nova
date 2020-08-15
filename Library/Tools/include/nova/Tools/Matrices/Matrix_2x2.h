@@ -6,6 +6,7 @@
 #ifndef __Matrix_2x2__
 #define __Matrix_2x2__
 
+#include "Sparse_Matrix_Flat.h"
 #include <nova/Tools/Matrices/Diagonal_Matrix.h>
 #include <nova/Tools/Matrices/Symmetric_Matrix_2x2.h>
 #include <nova/Tools/Utilities/Utilities.h>

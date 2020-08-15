@@ -27,6 +27,7 @@ class Read_Write
     static void Read(std::istream& input,T& d)
     {input.read(reinterpret_cast<char*>(&d),sizeof(T));}
 
+    // Here
     static void Write(std::ostream& output,const T& d)
     {output.write(reinterpret_cast<const char*>(&d),sizeof(T));}
 };

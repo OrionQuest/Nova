@@ -41,9 +41,9 @@ class Grid_Hierarchy_Iterator
         stack.pop();
         const unsigned level=cell.first;
         const T_INDEX& index=cell.second;
-
         bool recurse=functor.Consume(cell);
-        if(!recurse){indicator.Progress(1UL<<(d*level));return;}
+        if(!recurse){
+            indicator.Progress(1UL<<(d*level));return;}
 
         for(Range_Iterator<d> iterator(T_RANGE::Unit_Box());iterator.Valid();iterator.Next())
             stack.push(T_CELL(level-1,index*2-iterator.Index()));

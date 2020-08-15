@@ -61,7 +61,7 @@ class Grid_Hierarchy_Lookup
 
     static bool Cell_Lookup(const Hierarchy& hierarchy,uint64_t& flags_offset,int& level,TV& weights)
     {
-        if(hierarchy.template Set<unsigned>(level,&Struct_type::flags).Is_Set(flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet)) return true;
+        if(hierarchy.template Set<unsigned>(level,&Struct_type::flags).Is_Set(flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet|Node_Ghost)) return true;
         if(Cell_Lookup_Finer(hierarchy,flags_offset,level,weights)) return true;
         return Cell_Lookup_Coarser(hierarchy,flags_offset,level,weights);
     }
@@ -94,7 +94,7 @@ class Grid_Hierarchy_Lookup
             candidate_weights*=(T)2.;
 
             // check for this offset being interior
-            if(hierarchy.template Set<unsigned>(candidate_level,&Struct_type::flags).Is_Set(candidate_flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet)){
+            if(hierarchy.template Set<unsigned>(candidate_level,&Struct_type::flags).Is_Set(candidate_flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet|Node_Ghost)){
                 flags_offset=candidate_flags_offset;
                 level=candidate_level;
                 weights=candidate_weights;
@@ -119,7 +119,7 @@ class Grid_Hierarchy_Lookup
             candidate_flags_offset=Flag_array_mask::DownsampleOffset(candidate_flags_offset);
 
             // check for this offset being interior
-            if(hierarchy.template Set<unsigned>(candidate_level,&Struct_type::flags).Is_Set(candidate_flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet)){
+            if(hierarchy.template Set<unsigned>(candidate_level,&Struct_type::flags).Is_Set(candidate_flags_offset,Cell_Type_Interior|Cell_Type_Dirichlet|Node_Ghost)){
                 flags_offset=candidate_flags_offset;
                 level=candidate_level;
                 weights=candidate_weights;

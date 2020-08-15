@@ -7,7 +7,7 @@
 #define __Grid__
 
 #include <nova/Tools/Utilities/Range.h>
-
+#include <nova/Tools/Log/Log.h>
 namespace Nova{
 template<class T,int d>
 class Grid
@@ -101,6 +101,28 @@ class Grid
     {
         int number_of_ghost_cells_plus_one=number_of_ghost_cells+1;
         index=T_INDEX((location-domain.min_corner)*one_over_dX+number_of_ghost_cells_plus_one)-number_of_ghost_cells;
+    }
+
+    int Cell_Flatten(const T_INDEX index)
+    {
+        if(d==2) return (index(1)-1)*counts(0)+index(0)-1;
+        else return (index(2)-1)*(counts(0)*counts(1))+(index(1)-1)*counts(0)+index(0)-1;
+    }
+
+    T_INDEX Cell_Unflatten(const int index)
+    {
+        if(d==2) return T_INDEX({index%counts(0)+1,index/counts(0)+1});
+        else return T_INDEX({(index%(counts(0)*counts(1)))%counts(0)+1,(index%(counts(0)*counts(1)))/counts(0)+1,index/(counts(0)*counts(1))+1});
+    }
+
+    int Node_Flatten(const T_INDEX index)
+    {
+        return 0;
+    }
+
+    T_INDEX Node_Unflatten(const int index)
+    {
+        return T_INDEX();
     }
 
 //##################################################################### 
