@@ -30,13 +30,13 @@ class Range
     }
 
     Range(const T xmin,const T xmax,const T ymin,const T ymax)
-        :min_corner(xmin,ymin),max_corner(xmax,ymax)
+        :min_corner({xmin,ymin}),max_corner({xmax,ymax})
     {
         static_assert(d==2,"Dimension should be 2.");
     }
 
     Range(const T xmin,const T xmax,const T ymin,const T ymax,const T zmin,const T zmax)
-        :min_corner(xmin,ymin,zmin),max_corner(xmax,ymax,zmax)
+        :min_corner({xmin,ymin,zmin}),max_corner({xmax,ymax,zmax})
     {
         static_assert(d==3,"Dimension should be 3.");
     }

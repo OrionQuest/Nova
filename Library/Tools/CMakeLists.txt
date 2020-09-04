@@ -1,5 +1,6 @@
 # Target for Tools
 add_library( _nova_tools
+  src/Boundaries/Boundary_Uniform.cpp
   src/Grids/Grid.cpp
   src/Grids/Grid_Iterator_Cell.cpp
   src/Grids/Grid_Iterator_Face.cpp
