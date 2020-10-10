@@ -55,7 +55,9 @@ class Density_Advection_Helper
                     TV dX=-velocity*dt;
                     uint64_t new_offset=offset;int new_level=level;
                     TV weights=Grid_Hierarchy_Backtrace<Struct_type,T,d>::Backtrace(hierarchy,new_level,index,new_offset,intra_cell_dX,dX);
+                    
                     T value=Hierarchy_Interpolation::Cell_Interpolation_Helper(hierarchy,nodes_of_cell_offsets,new_level,new_offset,weights,cell_channel,node_channel);
+                    // if(value>(T)0.) Log::cout<<"velocity: "<<velocity<<", weights: "<<weights<<", value: "<<value<<std::endl;
                     result(offset)=value;}
                 range_iterator.Next();}
         };

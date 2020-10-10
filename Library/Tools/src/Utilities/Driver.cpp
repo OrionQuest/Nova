@@ -54,7 +54,6 @@ Initialize()
     else current_frame=example.first_frame;
     output_number=current_frame;
     time=example.Time_At_Frame(current_frame);
-
     example.output_number=output_number;
     example.current_frame=current_frame;
 }

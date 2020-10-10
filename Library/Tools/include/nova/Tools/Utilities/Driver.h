@@ -20,7 +20,7 @@ class Driver
     int current_frame,output_number;
 
     Driver(Example<T,d>& example_input)
-        :example(example_input),output_number(example.first_frame)
+        :example(example_input),output_number(example.first_frame),time((T)0.)
     {}
 
     virtual ~Driver() {}

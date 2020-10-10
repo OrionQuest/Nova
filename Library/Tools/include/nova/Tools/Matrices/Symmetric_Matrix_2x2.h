@@ -198,6 +198,9 @@ class Symmetric_Matrix<T,2>
 
     static Symmetric_Matrix Conjugate_With_Transpose(const Matrix<T,3,2>& A,const Symmetric_Matrix<T,3>& B)
     {return Transpose_Times_With_Symmetric_Result(B*A,A);}
+
+    static Symmetric_Matrix Outer_Product(const Vector<T,2>& u)
+    {return Symmetric_Matrix(u(0)*u(0),u(0)*u(1),u(1)*u(1));}
 };
 
 template<class T>
