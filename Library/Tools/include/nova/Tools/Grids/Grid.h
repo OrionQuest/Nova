@@ -7,7 +7,7 @@
 #define __Grid__
 
 #include <nova/Tools/Utilities/Range.h>
-#include <nova/Tools/Log/Log.h>
+
 namespace Nova{
 template<class T,int d>
 class Grid
@@ -103,94 +103,6 @@ class Grid
         index=T_INDEX((location-domain.min_corner)*one_over_dX+number_of_ghost_cells_plus_one)-number_of_ghost_cells;
     }
 
-    int Cell_Flatten(const T_INDEX index) const
-    {
-        if(Cell_OOB(index)) {std::cout<<"Cell OUT OF BOUNDARY!"<<std::endl;exit(0);}
-        if(d==2) return (index(1)-1)*counts(0)+index(0)-1;
-        else return (index(2)-1)*(counts(0)*counts(1))+(index(1)-1)*counts(0)+index(0)-1;
-    }
-
-    T_INDEX Cell_Unflatten(const int index) const
-    {
-        if(d==2) return T_INDEX({index%counts(0)+1,index/counts(0)+1});
-        else return T_INDEX({(index%(counts(0)*counts(1)))%counts(0)+1,(index%(counts(0)*counts(1)))/counts(0)+1,index/(counts(0)*counts(1))+1});
-    }
-
-    // TODO: 3d
-    int Node_Flatten(const T_INDEX index) const 
-    {
-        if(Node_OOB(index)) {std::cout<<"NODE OUT OF BOUNDARY!"<<std::endl;exit(0);}
-        if(d==2) return (index(1)-1)*(counts(0)+1)+index(0)-1;
-        else return -1;
-    }
-    
-    // TODO: 3d
-    T_INDEX Node_Unflatten(const int index) const 
-    {
-        if(d==2) return T_INDEX({index%(counts(0)+1)+1,index/(counts(0)+1)+1});
-        else return T_INDEX();
-    }
-
-    //TODO: 3d
-    int Face_X_Flatten(const T_INDEX index) const
-    {
-        if(Face_X_OOB(index)) {std::cout<<"FACE X OUT OF BOUNDARY!"<<std::endl;exit(0);}
-        if(d==2) return (index(1)-1)*(counts(0)+1)+index(0)-1;
-        else return -1;
-    }
-
-    // TODO: 3d
-    T_INDEX Face_X_Unflatten(const int index) const 
-    {
-        if(d==2) return T_INDEX({index%(counts(0)+1)+1,index/(counts(0)+1)+1});
-        else return T_INDEX();
-    }
-
-    //TODO: 3d
-    int Face_Y_Flatten(const T_INDEX index) const 
-    {
-        if(Face_Y_OOB(index)) {std::cout<<"FACE Y OUT OF BOUNDARY!"<<std::endl;exit(0);}
-        if(d==2) return (index(1)-1)*counts(0)+index(0)-1;
-        else return -1;
-    }
-
-    // TODO: 3d
-    T_INDEX Face_Y_Unflatten(const int index) const 
-    {
-        if(d==2) return T_INDEX({index%counts(0)+1,index/counts(0)+1});
-        else return T_INDEX();
-    }
-    //TODO: 3d
-    bool Cell_OOB(const T_INDEX index) const
-    {
-        if(d==2) return index(0)<1||index(0)>counts(0)||index(1)<1||index(1)>counts(1);
-        else return -1;
-    }
-     
-    //TODO: 3d
-    bool Node_OOB(const T_INDEX index) const
-    {
-        if(d==2) return index(0)<1||index(0)>counts(0)+1||index(1)<1||index(1)>counts(1)+1;
-        else return -1;
-    }
-
-    // TODO: 3d
-    // 2d: (n+1) x n
-    // 3d: (n+1) x n x n
-    bool Face_X_OOB(const T_INDEX index) const
-    {
-        if(d==2) return index(0)<1||index(0)>counts(0)+1||index(1)<1||index(1)>counts(1);
-        else return -1;
-    }
-
-    // TODO: 3d
-    // 2d: n x (n+1)
-    // 3d: n x (n+1) x n
-    bool Face_Y_OOB(const T_INDEX index) const 
-    {
-        if(d==2) return index(0)<1||index(0)>counts(0)||index(1)<1||index(1)>counts(1)+1;
-        else return -1;
-    }
 //##################################################################### 
     void Initialize(const T_INDEX& counts_input,const Range<T,d>& domain_input);
     void Nodes_In_Cell_From_Minimum_Corner_Node(const T_INDEX& minimum_corner_node,T_INDEX nodes[number_of_nodes_per_cell]) const;
